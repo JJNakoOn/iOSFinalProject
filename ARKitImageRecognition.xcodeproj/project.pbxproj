@@ -27,6 +27,9 @@
 		D2CC407B20C6E5E50064BD51 /* KeySilver.tga in Resources */ = {isa = PBXBuildFile; fileRef = D2CC407820C6E5E50064BD51 /* KeySilver.tga */; };
 		D2CC407C20C6E5E50064BD51 /* KeyCopper.tga in Resources */ = {isa = PBXBuildFile; fileRef = D2CC407920C6E5E50064BD51 /* KeyCopper.tga */; };
 		D2CC408120C7879E0064BD51 /* KeyGold.tga in Resources */ = {isa = PBXBuildFile; fileRef = D2CC408020C7879E0064BD51 /* KeyGold.tga */; };
+		D2CC408620C852E40064BD51 /* goldKeyImage.png in Resources */ = {isa = PBXBuildFile; fileRef = D2CC408320C852E30064BD51 /* goldKeyImage.png */; };
+		D2CC408720C852E40064BD51 /* silverKeyImage.png in Resources */ = {isa = PBXBuildFile; fileRef = D2CC408420C852E30064BD51 /* silverKeyImage.png */; };
+		D2CC408820C852E40064BD51 /* copperKeyImage.png in Resources */ = {isa = PBXBuildFile; fileRef = D2CC408520C852E40064BD51 /* copperKeyImage.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,9 @@
 		D2CC407820C6E5E50064BD51 /* KeySilver.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = KeySilver.tga; sourceTree = "<group>"; };
 		D2CC407920C6E5E50064BD51 /* KeyCopper.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = KeyCopper.tga; sourceTree = "<group>"; };
 		D2CC408020C7879E0064BD51 /* KeyGold.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = KeyGold.tga; path = ../../../../DAE/KeyGold.tga; sourceTree = "<group>"; };
+		D2CC408320C852E30064BD51 /* goldKeyImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goldKeyImage.png; sourceTree = "<group>"; };
+		D2CC408420C852E30064BD51 /* silverKeyImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = silverKeyImage.png; sourceTree = "<group>"; };
+		D2CC408520C852E40064BD51 /* copperKeyImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = copperKeyImage.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +143,9 @@
 		D2C98C3A20C538B0002952E0 /* Key */ = {
 			isa = PBXGroup;
 			children = (
+				D2CC408520C852E40064BD51 /* copperKeyImage.png */,
+				D2CC408320C852E30064BD51 /* goldKeyImage.png */,
+				D2CC408420C852E30064BD51 /* silverKeyImage.png */,
 				D2CC408020C7879E0064BD51 /* KeyGold.tga */,
 				D2CC407920C6E5E50064BD51 /* KeyCopper.tga */,
 				D2CC407820C6E5E50064BD51 /* KeySilver.tga */,
@@ -220,6 +229,7 @@
 				D2CC407720C6E4EB0064BD51 /* key_copper.dae in Resources */,
 				D2CC407C20C6E5E50064BD51 /* KeyCopper.tga in Resources */,
 				63217230207CD49400A39F41 /* book.scn in Resources */,
+				D2CC408620C852E40064BD51 /* goldKeyImage.png in Resources */,
 				63217231207CD49D00A39F41 /* tree.scn in Resources */,
 				D2C98C4520C574E9002952E0 /* key_silver.dae in Resources */,
 				D2CC407B20C6E5E50064BD51 /* KeySilver.tga in Resources */,
@@ -232,7 +242,9 @@
 				D2CC407520C63F530064BD51 /* treasureBox.dae in Resources */,
 				6321720A207CAAA000A39F41 /* book.jpg in Resources */,
 				D2C98C4E20C5A4C2002952E0 /* coin_tex.png in Resources */,
+				D2CC408820C852E40064BD51 /* copperKeyImage.png in Resources */,
 				63217233207CF6CD00A39F41 /* 3D Models Credits.md in Resources */,
+				D2CC408720C852E40064BD51 /* silverKeyImage.png in Resources */,
 				63217221207CCCED00A39F41 /* tree.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
