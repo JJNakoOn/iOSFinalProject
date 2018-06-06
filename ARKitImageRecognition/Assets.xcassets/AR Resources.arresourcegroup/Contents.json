@@ -1,0 +1,32 @@
+{
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
+  "resources" : [
+    {
+      "filename" : "Book.arreferenceimage"
+    },
+    {
+      "filename" : "darts.arreferenceimage"
+    },
+    {
+      "filename" : "files.arreferenceimage"
+    },
+    {
+      "filename" : "handsome.arreferenceimage"
+    },
+    {
+      "filename" : "liangG.arreferenceimage"
+    },
+    {
+      "filename" : "Snow Mountain.arreferenceimage"
+    },
+    {
+      "filename" : "Trees In the Dark.arreferenceimage"
+    },
+    {
+      "filename" : "za7za8.arreferenceimage"
+    }
+  ]
+}
