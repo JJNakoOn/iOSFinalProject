@@ -18,6 +18,7 @@
 		63B119262060F29400A7E3BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63B119242060F29400A7E3BD /* Main.storyboard */; };
 		63B119282060F29400A7E3BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63B119272060F29400A7E3BD /* Assets.xcassets */; };
 		63B1192B2060F29400A7E3BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63B119292060F29400A7E3BD /* LaunchScreen.storyboard */; };
+		6E0BA35FEC6B98A7A8D45971 /* Pods_ARKitImageRecognition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4698397A90C98EF49BCC78D /* Pods_ARKitImageRecognition.framework */; };
 		D2C98C4320C54055002952E0 /* key_gold.dae in Resources */ = {isa = PBXBuildFile; fileRef = D2C98C4220C54055002952E0 /* key_gold.dae */; };
 		D2C98C4520C574E9002952E0 /* key_silver.dae in Resources */ = {isa = PBXBuildFile; fileRef = D2C98C4420C574E9002952E0 /* key_silver.dae */; };
 		D2C98C4E20C5A4C2002952E0 /* coin_tex.png in Resources */ = {isa = PBXBuildFile; fileRef = D2C98C4D20C5A4C2002952E0 /* coin_tex.png */; };
@@ -33,9 +34,11 @@
 		D2CC408A20C8D9E30064BD51 /* GameInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CC408920C8D9E30064BD51 /* GameInfo.swift */; };
 		D2CC408C20C911960064BD51 /* CreateGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CC408B20C911960064BD51 /* CreateGameViewController.swift */; };
 		D2CC408E20C9193A0064BD51 /* KeyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CC408D20C9193A0064BD51 /* KeyInfoViewController.swift */; };
+		D2CC409020C92BC40064BD51 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2CC408F20C92BC30064BD51 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A240FF9350E6C512DF10B6B /* Pods-ARKitImageRecognition.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARKitImageRecognition.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARKitImageRecognition/Pods-ARKitImageRecognition.release.xcconfig"; sourceTree = "<group>"; };
 		63217207207CAAA000A39F41 /* book.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = book.jpg; sourceTree = "<group>"; };
 		6321721C207CC86800A39F41 /* mountain.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = mountain.scn; sourceTree = "<group>"; };
 		63217220207CCCED00A39F41 /* tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tree.png; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 		63B119272060F29400A7E3BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63B1192A2060F29400A7E3BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63B1192C2060F29500A7E3BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5267BAF4A5E63E245149634 /* Pods-ARKitImageRecognition.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARKitImageRecognition.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARKitImageRecognition/Pods-ARKitImageRecognition.debug.xcconfig"; sourceTree = "<group>"; };
 		D2C98C4220C54055002952E0 /* key_gold.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = key_gold.dae; sourceTree = "<group>"; };
 		D2C98C4420C574E9002952E0 /* key_silver.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = key_silver.dae; sourceTree = "<group>"; };
 		D2C98C4D20C5A4C2002952E0 /* coin_tex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coin_tex.png; sourceTree = "<group>"; };
@@ -64,6 +68,8 @@
 		D2CC408920C8D9E30064BD51 /* GameInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfo.swift; sourceTree = "<group>"; };
 		D2CC408B20C911960064BD51 /* CreateGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameViewController.swift; sourceTree = "<group>"; };
 		D2CC408D20C9193A0064BD51 /* KeyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyInfoViewController.swift; sourceTree = "<group>"; };
+		D2CC408F20C92BC30064BD51 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F4698397A90C98EF49BCC78D /* Pods_ARKitImageRecognition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARKitImageRecognition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E0BA35FEC6B98A7A8D45971 /* Pods_ARKitImageRecognition.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +128,8 @@
 			children = (
 				63B1191F2060F29400A7E3BD /* ARKitImageRecognition */,
 				63B1191E2060F29400A7E3BD /* Products */,
+				F72ABF6F22EE82C06CE5F7D6 /* Pods */,
+				74AC5838931C95A569AACA63 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,6 +144,7 @@
 		63B1191F2060F29400A7E3BD /* ARKitImageRecognition */ = {
 			isa = PBXGroup;
 			children = (
+				D2CC408F20C92BC30064BD51 /* GoogleService-Info.plist */,
 				632171E2207C9ED700A39F41 /* 3D Models */,
 				63B119202060F29400A7E3BD /* AppDelegate.swift */,
 				63B119222060F29400A7E3BD /* ViewController.swift */,
@@ -147,6 +157,14 @@
 				D2CC408D20C9193A0064BD51 /* KeyInfoViewController.swift */,
 			);
 			path = ARKitImageRecognition;
+			sourceTree = "<group>";
+		};
+		74AC5838931C95A569AACA63 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F4698397A90C98EF49BCC78D /* Pods_ARKitImageRecognition.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D2C98C3A20C538B0002952E0 /* Key */ = {
@@ -175,6 +193,15 @@
 			path = Box;
 			sourceTree = "<group>";
 		};
+		F72ABF6F22EE82C06CE5F7D6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C5267BAF4A5E63E245149634 /* Pods-ARKitImageRecognition.debug.xcconfig */,
+				3A240FF9350E6C512DF10B6B /* Pods-ARKitImageRecognition.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -182,9 +209,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63B1192F2060F29500A7E3BD /* Build configuration list for PBXNativeTarget "ARKitImageRecognition" */;
 			buildPhases = (
+				2324DB3DFBBA1F7CFE6C96B2 /* [CP] Check Pods Manifest.lock */,
 				63B119192060F29400A7E3BD /* Sources */,
 				63B1191A2060F29400A7E3BD /* Frameworks */,
 				63B1191B2060F29400A7E3BD /* Resources */,
+				83A50496B496301CB0718FA0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -253,12 +282,58 @@
 				D2C98C4E20C5A4C2002952E0 /* coin_tex.png in Resources */,
 				D2CC408820C852E40064BD51 /* copperKeyImage.png in Resources */,
 				63217233207CF6CD00A39F41 /* 3D Models Credits.md in Resources */,
+				D2CC409020C92BC40064BD51 /* GoogleService-Info.plist in Resources */,
 				D2CC408720C852E40064BD51 /* silverKeyImage.png in Resources */,
 				63217221207CCCED00A39F41 /* tree.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2324DB3DFBBA1F7CFE6C96B2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ARKitImageRecognition-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		83A50496B496301CB0718FA0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ARKitImageRecognition/Pods-ARKitImageRecognition-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ARKitImageRecognition/Pods-ARKitImageRecognition-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		63B119192060F29400A7E3BD /* Sources */ = {
@@ -409,6 +484,7 @@
 		};
 		63B119302060F29500A7E3BD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5267BAF4A5E63E245149634 /* Pods-ARKitImageRecognition.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -425,6 +501,7 @@
 		};
 		63B119312060F29500A7E3BD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3A240FF9350E6C512DF10B6B /* Pods-ARKitImageRecognition.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
