@@ -21,7 +21,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>For Augmented Reality</string>
+	<string>For Augmented Reality &amp; picking photos</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>For picking photos</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

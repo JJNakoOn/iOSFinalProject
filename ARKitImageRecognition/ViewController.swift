@@ -160,13 +160,15 @@ extension ViewController: ARSCNViewDelegate {
         planeNode.eulerAngles.x = -.pi / 2
         
         planeNode.runAction(imageHighlightAction)
-        node.addChildNode(planeNode)*/
+        node.addChildNode(planeNode)
+        */
+        
         
         let overlayNode = self.getNode(withImageName: imageName)
         overlayNode.opacity = 0
         overlayNode.position.y = 0.1
         overlayNode.position.z = 0.05
-        overlayNode.runAction(self.wallFadeAndSpinAction)
+        overlayNode.runAction(self.fadeAndSpinAction)
         
         node.addChildNode(overlayNode)
         
@@ -184,9 +186,9 @@ extension ViewController: ARSCNViewDelegate {
     var imageHighlightAction: SCNAction {
         return .sequence([
             .wait(duration: 0.25),
-            .fadeOpacity(to: 0.85, duration: 1.50),
-            .fadeOpacity(to: 0.15, duration: 1.50),
-            .fadeOpacity(to: 0.85, duration: 1.50),
+            .fadeOpacity(to: 0.85, duration: 2.50),
+            .fadeOpacity(to: 0.15, duration: 2.50),
+            .fadeOpacity(to: 0.85, duration: 2.50),
             .fadeOut(duration: 0.75),
             .removeFromParentNode()
             ])
@@ -209,6 +211,14 @@ extension ViewController: ARSCNViewDelegate {
         case "file":
             node = silverKeyNode
         case "liangG":
+            node = treasureBoxNode
+        case "sofa":
+            node = treasureBoxNode
+        case "curtain":
+            node = treasureBoxNode
+        case "wifi":
+            node = treasureBoxNode
+        case "bed":
             node = treasureBoxNode
         default:
             break

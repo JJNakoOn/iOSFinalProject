@@ -4,8 +4,8 @@
   <contributor>
    <authoring_tool>SceneKit Collada Exporter v1.0</authoring_tool>
   </contributor>
-  <created>2018-06-05T14:27:11Z</created>
-  <modified>2018-06-05T14:27:11Z</modified>
+  <created>2018-06-07T08:28:49Z</created>
+  <modified>2018-06-07T08:28:49Z</modified>
   <unit meter="0.010000"/>
   <up_axis>Y_UP</up_axis>
  </asset>
@@ -8564,7 +8564,6 @@
  <library_visual_scenes>
   <visual_scene id="scene1045">
    <node id="treasurechest_open" name="treasureBox">
-    <matrix>1 0 0 0 0 1.788139e-07 0.9999998 1.814261e-06 0 -0.9999998 1.788139e-07 0 0 0 0 1 </matrix>
     <node id="group_cpin" name="group_cpin">
      <node id="polySurface174" name="polySurface174">
       <instance_geometry url="#geometry9">

@@ -5,7 +5,13 @@
   },
   "resources" : [
     {
+      "filename" : "bed.arreferenceimage"
+    },
+    {
       "filename" : "Book.arreferenceimage"
+    },
+    {
+      "filename" : "curtain.arreferenceimage"
     },
     {
       "filename" : "darts.arreferenceimage"
@@ -23,7 +29,13 @@
       "filename" : "Snow Mountain.arreferenceimage"
     },
     {
+      "filename" : "sofa.arreferenceimage"
+    },
+    {
       "filename" : "Trees In the Dark.arreferenceimage"
+    },
+    {
+      "filename" : "wifi.arreferenceimage"
     },
     {
       "filename" : "za7za8.arreferenceimage"
