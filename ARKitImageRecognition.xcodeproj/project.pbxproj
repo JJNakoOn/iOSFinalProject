@@ -35,6 +35,7 @@
 		D2CC408C20C911960064BD51 /* CreateGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CC408B20C911960064BD51 /* CreateGameViewController.swift */; };
 		D2CC408E20C9193A0064BD51 /* KeyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CC408D20C9193A0064BD51 /* KeyInfoViewController.swift */; };
 		D2CC409020C92BC40064BD51 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2CC408F20C92BC30064BD51 /* GoogleService-Info.plist */; };
+		D2CC409320CA7B6A0064BD51 /* editorbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = D2CC409220CA7B680064BD51 /* editorbackground.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		D2CC408B20C911960064BD51 /* CreateGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameViewController.swift; sourceTree = "<group>"; };
 		D2CC408D20C9193A0064BD51 /* KeyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyInfoViewController.swift; sourceTree = "<group>"; };
 		D2CC408F20C92BC30064BD51 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D2CC409220CA7B680064BD51 /* editorbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editorbackground.png; sourceTree = "<group>"; };
 		F4698397A90C98EF49BCC78D /* Pods_ARKitImageRecognition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARKitImageRecognition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -144,6 +146,7 @@
 		63B1191F2060F29400A7E3BD /* ARKitImageRecognition */ = {
 			isa = PBXGroup;
 			children = (
+				D2CC409120CA7B1F0064BD51 /* BackGroundImages */,
 				D2CC408F20C92BC30064BD51 /* GoogleService-Info.plist */,
 				632171E2207C9ED700A39F41 /* 3D Models */,
 				63B119202060F29400A7E3BD /* AppDelegate.swift */,
@@ -191,6 +194,14 @@
 				D2C98C4D20C5A4C2002952E0 /* coin_tex.png */,
 			);
 			path = Box;
+			sourceTree = "<group>";
+		};
+		D2CC409120CA7B1F0064BD51 /* BackGroundImages */ = {
+			isa = PBXGroup;
+			children = (
+				D2CC409220CA7B680064BD51 /* editorbackground.png */,
+			);
+			path = BackGroundImages;
 			sourceTree = "<group>";
 		};
 		F72ABF6F22EE82C06CE5F7D6 /* Pods */ = {
@@ -285,6 +296,7 @@
 				D2CC409020C92BC40064BD51 /* GoogleService-Info.plist in Resources */,
 				D2CC408720C852E40064BD51 /* silverKeyImage.png in Resources */,
 				63217221207CCCED00A39F41 /* tree.png in Resources */,
+				D2CC409320CA7B6A0064BD51 /* editorbackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

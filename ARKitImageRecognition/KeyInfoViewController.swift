@@ -10,14 +10,48 @@ import UIKit
 
 class KeyInfoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
+    var KType: String = ""
+    var KInfo: KeyInfo? = KeyInfo()
+    
+    @IBOutlet var isFloorChoose: UISegmentedControl!
     @IBOutlet weak var keyImage: UIImageView!
-    @IBOutlet weak var pickingPhotoButton: UIButton!
+    @IBOutlet var pickingPhotoButton: UIButton!
+    @IBOutlet var clue: UITextField!
+    @IBOutlet var hint: UITextField!
+    
+    
+    @IBAction func saveBack(_ sender: UIButton) {
+        print("yaHaaaaa~~")
+        
+        // TODO: make sure that nothing is nil~
+        
+        KInfo?.keyImg.isFloor = (isFloorChoose.selectedSegmentIndex == 0)
+        KInfo?.keyClue = clue.text!
+        KInfo?.keyHint = hint.text!
+        print("befor perfromSegue")
+        self.performSegue(withIdentifier: "goEditMenu", sender: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setEdittingWord()
+        setBgImg()
+        KInfo?.keyImg = ImageInfo()
         // Do any additional setup after loading the view.
     }
-
+    
+    func setEdittingWord(){
+        self.title = KType + "鑰匙設定"
+        self.pickingPhotoButton.setTitle("加入" + KType + "鑰匙位置照片", for: .normal)
+    }
+    func setBgImg(){
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "editorbackground.png")
+        backgroundImage.contentMode =  UIViewContentMode.scaleAspectFill
+        backgroundImage.alpha = 0.5
+        self.view.insertSubview(backgroundImage, at: 0)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -75,24 +109,13 @@ class KeyInfoViewController: UIViewController, UIImagePickerControllerDelegate, 
         let uniqueString = NSUUID().uuidString
         
         if let selectedImage = selectedImageFromPicker {
-            
+            self.KInfo?.keyImg.image = selectedImageFromPicker
             DispatchQueue.main.async {
                 self.keyImage.image = selectedImage
             }
-            
         }
         
         dismiss(animated: true, completion: nil)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

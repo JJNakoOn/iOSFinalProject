@@ -9,22 +9,28 @@
 import Foundation
 import UIKit
 
+enum keyType: String {
+    case gold = "金"
+    case silver = "銀"
+    case copper = "銅"
+}
+
 class GameInfo{
     var gameName: String = ""
     var introduction: String = ""
-    var boxHint: String = ""
+    var boxPos: String = ""
     var winMessage: String = ""
-    var boxImg: ImageInfo? = nil
-    var goldKeyInfo: KeyInfo? = nil
-    var silverKeyInfo: KeyInfo? = nil
-    var copperKeyInfo: KeyInfo? = nil
+    var boxImg: ImageInfo!
+    var goldKeyInfo: KeyInfo!
+    var silverKeyInfo: KeyInfo!
+    var copperKeyInfo: KeyInfo!
 }
 class KeyInfo{
-    var keyHint1: String = ""
-    var keyHint2: String = ""
-    var image: UIImage? = nil
+    var keyClue: String = ""
+    var keyHint: String = ""
+    var keyImg: ImageInfo!
 }
 class ImageInfo{
-    var image: UIImage? = nil
+    var image: UIImage!
     var isFloor: Bool = true
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class CreateGameViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    var info: GameInfo? = GameInfo()
     @IBOutlet weak var boxImage: UIImageView!
     @IBAction func pickBoxPhoto(_ sender: UIButton) {
         // 建立一個 UIImagePickerController 的實體
@@ -52,7 +53,8 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setBgImg()
+        info?.boxImg = ImageInfo()
         // Do any additional setup after loading the view.
     }
 
@@ -60,28 +62,27 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    func setBgImg(){
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "editorbackground.png")
+        backgroundImage.contentMode =  UIViewContentMode.scaleAspectFill
+        backgroundImage.alpha = 0.5
+        self.view.insertSubview(backgroundImage, at: 0)
+    }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         var selectedImageFromPicker: UIImage?
-        
-        
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            
             selectedImageFromPicker = pickedImage
         }
-        
         let uniqueString = NSUUID().uuidString
-        
         if let selectedImage = selectedImageFromPicker {
-            
+            self.info?.boxImg?.image = selectedImageFromPicker!
             DispatchQueue.main.async {
                 self.boxImage.image = selectedImage
             }
-
         }
-        
         dismiss(animated: true, completion: nil)
     }
     /*
@@ -93,6 +94,36 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
         // Pass the selected object to the new view controller.
     }
     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editGold" {
+            self.prepareEditingKey(for: segue, type: keyType.gold.rawValue)
+        } else if segue.identifier == "editSilver" {
+            self.prepareEditingKey(for: segue, type: keyType.silver.rawValue)
+        } else if segue.identifier == "editCopper" {
+            self.prepareEditingKey(for: segue, type: keyType.copper.rawValue)
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
+    }
+    
+    func prepareEditingKey(for segue: UIStoryboardSegue, type: String) {
+        let keyInfoViewController = segue.destination as! KeyInfoViewController
+        keyInfoViewController.KType = type
+    }
 
+    @IBAction func saveUnwindSegueFromKeyInfoView(_ segue: UIStoryboardSegue){
+        guard let keyInfo = segue.source as? KeyInfoViewController else {return}
+        switch keyInfo.KType {
+            case keyType.gold.rawValue:
+                self.info?.goldKeyInfo = keyInfo.KInfo
+                print(keyInfo.KInfo!.keyHint)
+            case keyType.silver.rawValue:
+                self.info?.silverKeyInfo = keyInfo.KInfo
+            case keyType.copper.rawValue:
+                self.info?.copperKeyInfo = keyInfo.KInfo
+            default:
+            fatalError("Wrong things happened!")
+        }
+    }
 }
 

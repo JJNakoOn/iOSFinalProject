@@ -4,8 +4,8 @@
   <contributor>
    <authoring_tool>SceneKit Collada Exporter v1.0</authoring_tool>
   </contributor>
-  <created>2018-06-07T09:00:52Z</created>
-  <modified>2018-06-07T09:00:52Z</modified>
+  <created>2018-06-08T09:52:00Z</created>
+  <modified>2018-06-08T09:52:00Z</modified>
   <unit meter="0.010000"/>
   <up_axis>Y_UP</up_axis>
  </asset>
@@ -10981,7 +10981,7 @@
      </node>
     </node>
     <node id="joint1" name="joint1" sid="SID_1" type="JOINT">
-     <matrix>1 0 0 0 0 1 0 93.21483 0 0 1 -74.40491 0 0 0 1 </matrix>
+     <matrix>1 0 -0 0 0 5.960464e-08 0.9999999 93.21483 0 -0.9999999 5.960464e-08 -74.40491 0 0 0 1 </matrix>
     </node>
    </node>
   </visual_scene>
