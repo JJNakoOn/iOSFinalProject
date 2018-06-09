@@ -10,8 +10,13 @@ import UIKit
 
 class CreateGameViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet var gameTitle: UITextField!
+    @IBOutlet var gameIntroduction: UITextField!
+    @IBOutlet var boxPos: UITextField!
+    @IBOutlet var winMsg: UITextField!
     var info: GameInfo? = GameInfo()
     @IBOutlet weak var boxImage: UIImageView!
+    @IBOutlet var boxImgIsFloor: UISegmentedControl!
     @IBAction func pickBoxPhoto(_ sender: UIButton) {
         // 建立一個 UIImagePickerController 的實體
         let imagePickerController = UIImagePickerController()
@@ -51,6 +56,19 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
         // 當使用者按下 uploadBtnAction 時會 present 剛剛建立好的三個 UIAlertAction 動作與
         present(imagePickerAlertController, animated: true, completion: nil)
     }
+    @IBAction func upLoadData(_ sender: UIButton) {
+        
+        // make sure that nothing is nil
+        
+        info?.gameName = gameTitle.text!
+        info?.introduction = gameIntroduction.text!
+        info?.boxPos = boxPos.text!
+        info?.winMessage = winMsg.text!
+        info?.boxImg?.isFloor = (boxImgIsFloor.selectedSegmentIndex == 0)
+        
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setBgImg()
@@ -116,7 +134,6 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
         switch keyInfo.KType {
             case keyType.gold.rawValue:
                 self.info?.goldKeyInfo = keyInfo.KInfo
-                print(keyInfo.KInfo!.keyHint)
             case keyType.silver.rawValue:
                 self.info?.silverKeyInfo = keyInfo.KInfo
             case keyType.copper.rawValue:

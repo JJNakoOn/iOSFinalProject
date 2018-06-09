@@ -307,6 +307,9 @@
                                 <rect key="frame" x="0.0" y="621" width="375" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="完成並上傳"/>
+                                <connections>
+                                    <action selector="upLoadData:" destination="8tY-fv-qZD" eventType="touchUpInside" id="vRH-8D-PwS"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3u1-Zy-049">
                                 <rect key="frame" x="16" y="513" width="100" height="100"/>
@@ -394,6 +397,11 @@
                     <navigationItem key="navigationItem" title="創建遊戲" id="Ruv-8T-dTp"/>
                     <connections>
                         <outlet property="boxImage" destination="lce-Zg-1fc" id="kKM-kK-DeV"/>
+                        <outlet property="boxImgIsFloor" destination="NHm-T4-pb4" id="OnP-sE-r7f"/>
+                        <outlet property="boxPos" destination="Q6m-U6-uTj" id="Jzb-5C-dqh"/>
+                        <outlet property="gameIntroduction" destination="vcy-kb-MT6" id="Ekn-GO-XOf"/>
+                        <outlet property="gameTitle" destination="lWw-fD-GrX" id="pXR-cl-Aed"/>
+                        <outlet property="winMsg" destination="9FT-WX-dR8" id="zIY-71-wS0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jMR-xc-gf7" userLabel="First Responder" sceneMemberID="firstResponder"/>
