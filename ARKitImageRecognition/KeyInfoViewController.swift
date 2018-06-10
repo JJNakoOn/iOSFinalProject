@@ -8,10 +8,11 @@
 
 import UIKit
 
-class KeyInfoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
+class KeyInfoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     var KType: String = ""
     var KInfo: KeyInfo? = KeyInfo()
+    var imgSelected: Bool = false
     
     @IBOutlet var isFloorChoose: UISegmentedControl!
     @IBOutlet weak var keyImage: UIImageView!
@@ -21,23 +22,43 @@ class KeyInfoViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     
     @IBAction func saveBack(_ sender: UIButton) {
-        print("yaHaaaaa~~")
         
-        // TODO: make sure that nothing is nil~
-        
-        KInfo?.keyImg.isFloor = (isFloorChoose.selectedSegmentIndex == 0)
-        KInfo?.keyClue = clue.text!
-        KInfo?.keyHint = hint.text!
-        print("befor perfromSegue")
-        self.performSegue(withIdentifier: "goEditMenu", sender: self)
+        if checkFillingStatus(){
+            KInfo?.keyImg.isFloor = (isFloorChoose.selectedSegmentIndex == 0)
+            KInfo?.keyClue = clue.text!
+            KInfo?.keyHint = hint.text!
+            self.performSegue(withIdentifier: "goEditMenu", sender: self)
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setEdittingWord()
         setBgImg()
-        KInfo?.keyImg = ImageInfo()
+        if(KInfo?.keyClue == ""){
+            KInfo?.keyImg = ImageInfo()
+        }
+        else{
+            print("Come in setting again!")
+            setData()
+        }
+        delegateSetting()
         // Do any additional setup after loading the view.
+    }
+    func setData(){
+        imgSelected = true
+        clue.text = KInfo?.keyClue
+        hint.text = KInfo?.keyHint
+        self.keyImage.image = KInfo?.keyImg.image
+        if (KInfo?.keyImg.isFloor)!{
+            isFloorChoose.selectedSegmentIndex = 0
+        } else {
+            isFloorChoose.selectedSegmentIndex = 1
+        }
+    }
+    func delegateSetting(){
+        clue.delegate = self
+        hint.delegate = self
     }
     
     func setEdittingWord(){
@@ -52,6 +73,15 @@ class KeyInfoViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.view.insertSubview(backgroundImage, at: 0)
     }
     
+    // press "Enter" to close the keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    // press the view to close the keyboard
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -112,10 +142,43 @@ class KeyInfoViewController: UIViewController, UIImagePickerControllerDelegate, 
             self.KInfo?.keyImg.image = selectedImageFromPicker
             DispatchQueue.main.async {
                 self.keyImage.image = selectedImage
+                self.imgSelected = true
             }
         }
         
         dismiss(animated: true, completion: nil)
+    }
+    
+    func checkFillingStatus() -> Bool{
+        return checkImgInfo(isSelected: self.imgSelected, message: "請選擇\(KType)鑰匙位置照片")
+            && checkTextEmpty(str: self.clue.text!, message: "請填寫\(KType)鑰匙線索")
+            && checkTextEmpty(str: self.hint.text!, message: "請填寫\(KType)鑰匙提示")
+    }
+    
+    func checkTextEmpty(str: String, message: String) -> Bool{
+        if (str.isEmpty) {
+            let alert = UIAlertController(title: "錯誤", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
+            return false
+        }
+        else {
+            return true
+        }
+    }
+    func checkImgInfo(isSelected: Bool, message: String) -> Bool{
+        if isSelected {
+            return true
+        } else {
+            let alert = UIAlertController(title: "錯誤", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
+            return false
+        }
     }
 
 }

@@ -219,5 +219,15 @@ class UploadingViewController: UIViewController {
             msgLabel.text = "上傳完成!"
         }
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "backToMenu"){
+            let destination = segue.destination
+            let slideAnimator = SlideAnimator()
+            destination.transitioningDelegate = slideAnimator
+        }
+        else{
+            super.prepare(for: segue, sender: sender)
+        }
+    }
 
 }

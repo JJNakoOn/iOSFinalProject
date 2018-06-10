@@ -18,6 +18,8 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet var boxPos: UITextField!
     @IBOutlet var winMsg: UITextField!
     var info: GameInfo? = GameInfo()
+    let slideAnimator = SlideAnimator()
+    var imgSelected:Bool = false
     @IBOutlet weak var boxImage: UIImageView!
     @IBOutlet var boxImgIsFloor: UISegmentedControl!
     @IBAction func pickBoxPhoto(_ sender: UIButton) {
@@ -243,6 +245,7 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
             self.info?.boxImg?.image = selectedImageFromPicker!
             DispatchQueue.main.async {
                 self.boxImage.image = selectedImage
+                self.imgSelected = true
             }
         }
         dismiss(animated: true, completion: nil)
@@ -251,21 +254,32 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editGold" {
             self.prepareEditingKey(for: segue, type: keyType.gold.rawValue)
+            checkRefilled(for: segue, keyinformation: info?.goldKeyInfo)
         } else if segue.identifier == "editSilver" {
             self.prepareEditingKey(for: segue, type: keyType.silver.rawValue)
+            checkRefilled(for: segue, keyinformation: info?.silverKeyInfo)
         } else if segue.identifier == "editCopper" {
             self.prepareEditingKey(for: segue, type: keyType.copper.rawValue)
+            checkRefilled(for: segue, keyinformation: info?.copperKeyInfo)
         } else if segue.identifier == "uploadSegue"{
             prepareUploadData()
-            transferUploadData(for: segue)
+            passUploadData(for: segue)
         } else {
             super.prepare(for: segue, sender: sender)
         }
     }
     
     func prepareEditingKey(for segue: UIStoryboardSegue, type: String) {
-        let keyInfoViewController = segue.destination as! KeyInfoViewController
-        keyInfoViewController.KType = type
+        let keyInfoVC = segue.destination as! KeyInfoViewController
+        keyInfoVC.KType = type
+    }
+    
+    func checkRefilled(for segue: UIStoryboardSegue, keyinformation: KeyInfo?){
+        guard keyinformation != nil else{
+            return
+        }
+        let keyInfoVC = segue.destination as! KeyInfoViewController
+        keyInfoVC.KInfo = keyinformation
     }
     
     func prepareUploadData(){
@@ -277,9 +291,10 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
         print("Get upLoad information!")
     }
     
-    func transferUploadData(for segue: UIStoryboardSegue){
+    func passUploadData(for segue: UIStoryboardSegue){
         let uploadingVC = segue.destination as! UploadingViewController
         uploadingVC.info = self.info
+        uploadingVC.transitioningDelegate = slideAnimator
     }
 
     @IBAction func saveUnwindSegueFromKeyInfoView(_ segue: UIStoryboardSegue){
@@ -293,6 +308,56 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
                 self.info?.copperKeyInfo = keyInfo.KInfo
             default:
             fatalError("Wrong things happened!")
+        }
+    }
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "uploadSegue" {
+            return checkImgInfo(isSelected: self.imgSelected, message: "請選擇寶箱位置照片")
+                && checkKeyInfo(key: self.info?.goldKeyInfo, message: "請填入金鑰匙資訊")
+                && checkKeyInfo(key: self.info?.silverKeyInfo, message: "請填入銀鑰匙資訊")
+                && checkKeyInfo(key: self.info?.copperKeyInfo, message: "請填入銅鑰匙資訊")
+                && checkTextEmpty(str: self.gameTitle.text!, message: "請填寫標題名稱")
+                && checkTextEmpty(str: self.gameIntroduction.text!, message: "請填寫遊戲描述")
+                && checkTextEmpty(str: self.boxPos.text!, message: "請填寫寶箱位置")
+                && checkTextEmpty(str: self.winMsg.text!, message: "請填寫勝利訊息")
+        }
+        // by default, transition
+        return true
+    }
+    func checkTextEmpty(str: String, message: String) -> Bool{
+        if (str.isEmpty) {
+            let alert = UIAlertController(title: "錯誤", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
+            return false
+        }
+        else {
+            return true
+        }
+    }
+    func checkKeyInfo(key: KeyInfo?, message: String) -> Bool{
+        guard key != nil else {
+            let alert = UIAlertController(title: "錯誤", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
+            return false
+        }
+        return true
+    }
+    func checkImgInfo(isSelected: Bool, message: String) -> Bool{
+        if isSelected {
+            return true
+        } else {
+            let alert = UIAlertController(title: "錯誤", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
+            return false
         }
     }
 }
