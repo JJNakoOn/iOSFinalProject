@@ -39,6 +39,7 @@
 		D2D31F9E20CD1FB0007192E4 /* UploadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D31F9D20CD1FB0007192E4 /* UploadingViewController.swift */; };
 		D2D31FA220CD53B9007192E4 /* SlideAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D31FA120CD53B9007192E4 /* SlideAnimator.swift */; };
 		D2D31FA420CD5B1E007192E4 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D31FA320CD5B1E007192E4 /* MainMenuViewController.swift */; };
+		D2D31FA620CD80DF007192E4 /* GameSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D31FA520CD80DF007192E4 /* GameSelectTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,7 @@
 		D2D31F9D20CD1FB0007192E4 /* UploadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadingViewController.swift; sourceTree = "<group>"; };
 		D2D31FA120CD53B9007192E4 /* SlideAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideAnimator.swift; sourceTree = "<group>"; };
 		D2D31FA320CD5B1E007192E4 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		D2D31FA520CD80DF007192E4 /* GameSelectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSelectTableViewController.swift; sourceTree = "<group>"; };
 		F4698397A90C98EF49BCC78D /* Pods_ARKitImageRecognition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARKitImageRecognition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -167,6 +169,7 @@
 				D2D31F9D20CD1FB0007192E4 /* UploadingViewController.swift */,
 				D2D31FA120CD53B9007192E4 /* SlideAnimator.swift */,
 				D2D31FA320CD5B1E007192E4 /* MainMenuViewController.swift */,
+				D2D31FA520CD80DF007192E4 /* GameSelectTableViewController.swift */,
 			);
 			path = ARKitImageRecognition;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				D2CC408C20C911960064BD51 /* CreateGameViewController.swift in Sources */,
 				D2CC408A20C8D9E30064BD51 /* GameInfo.swift in Sources */,
 				D2CC408E20C9193A0064BD51 /* KeyInfoViewController.swift in Sources */,
+				D2D31FA620CD80DF007192E4 /* GameSelectTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,7 +14,11 @@ enum keyType: String {
     case silver = "銀"
     case copper = "銅"
 }
-
+class GameSimpleInfo{
+    var gameID: String = ""
+    var title: String = ""
+    var introduction: String = ""
+}
 class GameInfo{
     var gameName: String = ""
     var introduction: String = ""
