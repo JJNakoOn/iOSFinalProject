@@ -70,47 +70,28 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
         info?.boxImg?.isFloor = (boxImgIsFloor.selectedSegmentIndex == 0)
         print("Get upLoad information!")
         //uploadDataBase()
-        let boxUrl = uploadImage(title: (info?.gameName)!, image: (info?.boxImg.image)!, name: "box")
-        print("!!!~~~ Get box URL ~~~!!!")
-        print(boxUrl)
         
-    }
-    func uploadDataBase(){
-        
+        // Start uploading
         let uniqueString = NSUUID().uuidString
-        let databaseRef = Database.database().reference().child("TestingUpLoad").child(uniqueString)
-        
-        databaseRef.setValue("www.google.com", withCompletionBlock: { (error, dataRef) in
-            
-            if error != nil {
-                
-                print("Database Error: \(error!.localizedDescription)")
-            }
-            else {
-                
-                print("網址已儲存")
-            }
-            
-        })
+        uploadImage(title: (info?.gameName)!, image: (info?.boxImg.image)!, name: "box", us: uniqueString)
+        uploadImage(title: (info?.gameName)!, image: (info?.goldKeyInfo.keyImg.image)!, name: "goldKey", us: uniqueString)
+        uploadImage(title: (info?.gameName)!, image: (info?.silverKeyInfo.keyImg.image)!, name: "silverKey", us: uniqueString)
+        uploadImage(title: (info?.gameName)!, image: (info?.copperKeyInfo.keyImg.image)!, name: "copperKey", us: uniqueString)
+        setDatabaseInfo(us: uniqueString)
     }
-    func uploadImage(title: String, image: UIImage, name: String) -> String? {
+    func uploadImage(title: String, image: UIImage, name: String, us: String) {
+        
         // upload the box Image
-        print("function 1 line")
-        let uniqueString = NSUUID().uuidString
-        let storageRef = Storage.storage().reference().child(title).child("\(uniqueString).png")
-        var url: String? = nil
-        if let ImageData = UIImagePNGRepresentation(image){
-            print("putting Data")
+        let storageRef = Storage.storage().reference().child(title).child("\(name).jpg")
+        
+        if let ImageData = UIImageJPEGRepresentation(image, 0.4){
             //storage save
-            storageRef.putData(ImageData, metadata: nil, completion: { (data, error) in
-                print("ya hey~~ inside first line~")
+            let uploadTask = storageRef.putData(ImageData, metadata: nil){ (metadata, error) in
                 if error != nil {
-                    print("there is error inside!")
                     print("Error: \(error!.localizedDescription)")
                     return
                 }
-                print("Getting download URL")
-                storageRef.downloadURL { imageUrl, error in
+                storageRef.downloadURL { (imageUrl, error) in
                     if error != nil {
                         print("get url error")
                         // Handle any errors
@@ -118,14 +99,96 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
                         // Get the download URＬ
                         let uploadImageUrl = imageUrl?.absoluteString
                         print("Photo Url: \(uploadImageUrl)")
-                        url = uploadImageUrl
+                        
+                        if(name == "box"){
+                            let databaseRef = Database.database().reference().child(us).child("boxImgInfo").child("data")
+                            databaseRef.setValue(uploadImageUrl!, withCompletionBlock: { (error, dataRef) in
+                                if error != nil {
+                                    print("Database Error: \(error!.localizedDescription)")
+                                }
+                                else {
+                                    print("Url of \(name) is in the database")
+                                }
+                            })
+                        }
+                        else{
+                            let databaseRef = Database.database().reference().child(us).child("keys").child(name).child("keyImgInfo").child("data")
+                            databaseRef.setValue(uploadImageUrl!, withCompletionBlock: { (error, dataRef) in
+                                if error != nil {
+                                    print("Database Error: \(error!.localizedDescription)")
+                                }
+                                else {
+                                    print("Url of \(name) is in the database")
+                                }
+                            })
+                        }
                     }
                 }
-            })
+            }
         }
-        print("Before returning")
         dismiss(animated: true, completion: nil)
-        return url
+    }
+    func setDatabaseInfo(us: String){
+        
+        var databaseRef = Database.database().reference().child(us).child("name")
+        databaseRef.setValue(info?.gameName, withCompletionBlock: { (error, dataRef) in
+            if error != nil {
+                print("Database Error: \(error!.localizedDescription)")
+            }
+        })
+        
+        databaseRef = Database.database().reference().child(us).child("introduction")
+        databaseRef.setValue(info?.introduction, withCompletionBlock: { (error, dataRef) in
+            if error != nil {
+                print("Database Error: \(error!.localizedDescription)")
+            }
+        })
+        
+        databaseRef = Database.database().reference().child(us).child("boxPos")
+        databaseRef.setValue(info?.boxPos, withCompletionBlock: { (error, dataRef) in
+            if error != nil {
+                print("Database Error: \(error!.localizedDescription)")
+            }
+        })
+        
+        databaseRef = Database.database().reference().child(us).child("boxImgInfo").child("isFloor")
+        databaseRef.setValue(info?.boxImg.isFloor, withCompletionBlock: { (error, dataRef) in
+            if error != nil {
+                print("Database Error: \(error!.localizedDescription)")
+            }
+        })
+        
+        databaseRef = Database.database().reference().child(us).child("winMsg")
+        databaseRef.setValue(info?.winMessage, withCompletionBlock: { (error, dataRef) in
+            if error != nil {
+                print("Database Error: \(error!.localizedDescription)")
+            }
+        })
+        setKeyDBInfo(us: us, keyName: "goldKey", clue: (info?.goldKeyInfo.keyClue)!, hint: (info?.goldKeyInfo.keyHint)!, isFloor: (info?.goldKeyInfo.keyImg.isFloor)!)
+        setKeyDBInfo(us: us, keyName: "silverKey", clue: (info?.silverKeyInfo.keyClue)!, hint: (info?.silverKeyInfo.keyHint)!, isFloor: (info?.silverKeyInfo.keyImg.isFloor)!)
+        setKeyDBInfo(us: us, keyName: "copperKey", clue: (info?.copperKeyInfo.keyClue)!, hint: (info?.copperKeyInfo.keyHint)!, isFloor: (info?.copperKeyInfo.keyImg.isFloor)!)
+        
+    }
+    func setKeyDBInfo(us: String, keyName: String, clue: String, hint: String ,isFloor: Bool){
+        
+        var databaseRef = Database.database().reference().child(us).child("keys").child(keyName).child("clue")
+        databaseRef.setValue(clue, withCompletionBlock: { (error, dataRef) in
+            if error != nil {
+                print("Database Error: \(error!.localizedDescription)")
+            }
+        })
+        databaseRef = Database.database().reference().child(us).child("keys").child(keyName).child("hint")
+        databaseRef.setValue(hint, withCompletionBlock: { (error, dataRef) in
+            if error != nil {
+                print("Database Error: \(error!.localizedDescription)")
+            }
+        })
+        databaseRef = Database.database().reference().child(us).child("keys").child(keyName).child("keyImgInfo").child("isFloor")
+        databaseRef.setValue(isFloor, withCompletionBlock: { (error, dataRef) in
+            if error != nil {
+                print("Database Error: \(error!.localizedDescription)")
+            }
+        })
     }
     override func viewDidLoad() {
         super.viewDidLoad()
