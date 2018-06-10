@@ -59,7 +59,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rrA-CG-mZ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-417" y="133"/>
+            <point key="canvasLocation" x="-607" y="133"/>
         </scene>
         <!--Main Menu-->
         <scene sceneID="T9L-aB-sPc">
@@ -215,6 +215,50 @@
             </objects>
             <point key="canvasLocation" x="2521" y="-141"/>
         </scene>
+        <!--Upload Game-->
+        <scene sceneID="tb7-4d-l9L">
+            <objects>
+                <viewController title="Upload Game" id="9XH-oG-d9o" customClass="UploadingViewController" customModule="ARKitImageRecognition" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kvA-N1-SlE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Znj-WQ-7Rk">
+                                <rect key="frame" x="0.0" y="475" width="375" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="返回主畫面"/>
+                                <connections>
+                                    <segue destination="q29-Ni-Mql" kind="show" id="abz-vT-rQw"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上傳中..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBA-r7-8ep">
+                                <rect key="frame" x="0.0" y="437" width="375" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FUr-ma-aeF" firstAttribute="trailing" secondItem="Znj-WQ-7Rk" secondAttribute="trailing" id="A7N-Wu-Jtp"/>
+                            <constraint firstItem="FUr-ma-aeF" firstAttribute="trailing" secondItem="TBA-r7-8ep" secondAttribute="trailing" id="LXX-Gr-wDr"/>
+                            <constraint firstItem="FUr-ma-aeF" firstAttribute="bottom" secondItem="Znj-WQ-7Rk" secondAttribute="bottom" constant="150" id="cf0-uE-FDO"/>
+                            <constraint firstItem="Znj-WQ-7Rk" firstAttribute="top" secondItem="TBA-r7-8ep" secondAttribute="bottom" constant="10" id="iyb-vb-8Q0"/>
+                            <constraint firstItem="TBA-r7-8ep" firstAttribute="leading" secondItem="FUr-ma-aeF" secondAttribute="leading" id="sIQ-YY-4BN"/>
+                            <constraint firstItem="Znj-WQ-7Rk" firstAttribute="leading" secondItem="FUr-ma-aeF" secondAttribute="leading" id="xpa-zl-DL0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FUr-ma-aeF"/>
+                    </view>
+                    <navigationItem key="navigationItem" title=" " id="R5W-RJ-5IS"/>
+                    <connections>
+                        <outlet property="finishButton" destination="Znj-WQ-7Rk" id="HM3-uW-O8z"/>
+                        <outlet property="msgLabel" destination="TBA-r7-8ep" id="bIB-2N-1Cn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Utw-8R-45D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="210" y="913"/>
+        </scene>
         <!--Create Game-->
         <scene sceneID="R1k-55-CZB">
             <objects>
@@ -308,7 +352,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="完成並上傳"/>
                                 <connections>
-                                    <action selector="upLoadData:" destination="8tY-fv-qZD" eventType="touchUpInside" id="vRH-8D-PwS"/>
+                                    <segue destination="9XH-oG-d9o" kind="show" identifier="uploadSegue" id="AYQ-b3-rGl"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3u1-Zy-049">
@@ -534,5 +578,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="UXu-8g-8Z8"/>
+        <segue reference="URf-J5-r2H"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -62,15 +62,19 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
     @IBAction func upLoadData(_ sender: UIButton) {
         
         // make sure that nothing is nil
-        
+        /*
         info?.gameName = gameTitle.text!
         info?.introduction = gameIntroduction.text!
         info?.boxPos = boxPos.text!
         info?.winMessage = winMsg.text!
         info?.boxImg?.isFloor = (boxImgIsFloor.selectedSegmentIndex == 0)
         print("Get upLoad information!")
-        //uploadDataBase()
+         */
         
+        
+        self.performSegue(withIdentifier: "uploadSegue", sender: self)
+        
+        /*
         // Start uploading
         let uniqueString = NSUUID().uuidString
         uploadImage(title: (info?.gameName)!, image: (info?.boxImg.image)!, name: "box", us: uniqueString)
@@ -78,7 +82,9 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
         uploadImage(title: (info?.gameName)!, image: (info?.silverKeyInfo.keyImg.image)!, name: "silverKey", us: uniqueString)
         uploadImage(title: (info?.gameName)!, image: (info?.copperKeyInfo.keyImg.image)!, name: "copperKey", us: uniqueString)
         setDatabaseInfo(us: uniqueString)
+        */
     }
+    
     func uploadImage(title: String, image: UIImage, name: String, us: String) {
         
         // upload the box Image
@@ -233,7 +239,6 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             selectedImageFromPicker = pickedImage
         }
-        let uniqueString = NSUUID().uuidString
         if let selectedImage = selectedImageFromPicker {
             self.info?.boxImg?.image = selectedImageFromPicker!
             DispatchQueue.main.async {
@@ -242,15 +247,7 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
         }
         dismiss(animated: true, completion: nil)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editGold" {
             self.prepareEditingKey(for: segue, type: keyType.gold.rawValue)
@@ -258,6 +255,9 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
             self.prepareEditingKey(for: segue, type: keyType.silver.rawValue)
         } else if segue.identifier == "editCopper" {
             self.prepareEditingKey(for: segue, type: keyType.copper.rawValue)
+        } else if segue.identifier == "uploadSegue"{
+            prepareUploadData()
+            transferUploadData(for: segue)
         } else {
             super.prepare(for: segue, sender: sender)
         }
@@ -266,6 +266,20 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
     func prepareEditingKey(for segue: UIStoryboardSegue, type: String) {
         let keyInfoViewController = segue.destination as! KeyInfoViewController
         keyInfoViewController.KType = type
+    }
+    
+    func prepareUploadData(){
+        info?.gameName = gameTitle.text!
+        info?.introduction = gameIntroduction.text!
+        info?.boxPos = boxPos.text!
+        info?.winMessage = winMsg.text!
+        info?.boxImg?.isFloor = (boxImgIsFloor.selectedSegmentIndex == 0)
+        print("Get upLoad information!")
+    }
+    
+    func transferUploadData(for segue: UIStoryboardSegue){
+        let uploadingVC = segue.destination as! UploadingViewController
+        uploadingVC.info = self.info
     }
 
     @IBAction func saveUnwindSegueFromKeyInfoView(_ segue: UIStoryboardSegue){

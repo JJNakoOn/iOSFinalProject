@@ -36,6 +36,7 @@
 		D2CC408E20C9193A0064BD51 /* KeyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CC408D20C9193A0064BD51 /* KeyInfoViewController.swift */; };
 		D2CC409020C92BC40064BD51 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2CC408F20C92BC30064BD51 /* GoogleService-Info.plist */; };
 		D2CC409320CA7B6A0064BD51 /* editorbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = D2CC409220CA7B680064BD51 /* editorbackground.png */; };
+		D2D31F9E20CD1FB0007192E4 /* UploadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D31F9D20CD1FB0007192E4 /* UploadingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		D2CC408D20C9193A0064BD51 /* KeyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyInfoViewController.swift; sourceTree = "<group>"; };
 		D2CC408F20C92BC30064BD51 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D2CC409220CA7B680064BD51 /* editorbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editorbackground.png; sourceTree = "<group>"; };
+		D2D31F9D20CD1FB0007192E4 /* UploadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadingViewController.swift; sourceTree = "<group>"; };
 		F4698397A90C98EF49BCC78D /* Pods_ARKitImageRecognition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARKitImageRecognition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -158,6 +160,7 @@
 				D2CC408920C8D9E30064BD51 /* GameInfo.swift */,
 				D2CC408B20C911960064BD51 /* CreateGameViewController.swift */,
 				D2CC408D20C9193A0064BD51 /* KeyInfoViewController.swift */,
+				D2D31F9D20CD1FB0007192E4 /* UploadingViewController.swift */,
 			);
 			path = ARKitImageRecognition;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2D31F9E20CD1FB0007192E4 /* UploadingViewController.swift in Sources */,
 				63B119232060F29400A7E3BD /* ViewController.swift in Sources */,
 				63B119212060F29400A7E3BD /* AppDelegate.swift in Sources */,
 				D2CC408C20C911960064BD51 /* CreateGameViewController.swift in Sources */,
