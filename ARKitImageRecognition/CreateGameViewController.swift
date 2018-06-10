@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
+import FirebaseStorage
 
-class CreateGameViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CreateGameViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
 
     @IBOutlet var gameTitle: UITextField!
     @IBOutlet var gameIntroduction: UITextField!
@@ -65,21 +68,94 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
         info?.boxPos = boxPos.text!
         info?.winMessage = winMsg.text!
         info?.boxImg?.isFloor = (boxImgIsFloor.selectedSegmentIndex == 0)
-        
+        print("Get upLoad information!")
+        //uploadDataBase()
+        let boxUrl = uploadImage(title: (info?.gameName)!, image: (info?.boxImg.image)!, name: "box")
+        print("!!!~~~ Get box URL ~~~!!!")
+        print(boxUrl)
         
     }
-    
+    func uploadDataBase(){
+        
+        let uniqueString = NSUUID().uuidString
+        let databaseRef = Database.database().reference().child("TestingUpLoad").child(uniqueString)
+        
+        databaseRef.setValue("www.google.com", withCompletionBlock: { (error, dataRef) in
+            
+            if error != nil {
+                
+                print("Database Error: \(error!.localizedDescription)")
+            }
+            else {
+                
+                print("網址已儲存")
+            }
+            
+        })
+    }
+    func uploadImage(title: String, image: UIImage, name: String) -> String? {
+        // upload the box Image
+        print("function 1 line")
+        let uniqueString = NSUUID().uuidString
+        let storageRef = Storage.storage().reference().child(title).child("\(uniqueString).png")
+        var url: String? = nil
+        if let ImageData = UIImagePNGRepresentation(image){
+            print("putting Data")
+            //storage save
+            storageRef.putData(ImageData, metadata: nil, completion: { (data, error) in
+                print("ya hey~~ inside first line~")
+                if error != nil {
+                    print("there is error inside!")
+                    print("Error: \(error!.localizedDescription)")
+                    return
+                }
+                print("Getting download URL")
+                storageRef.downloadURL { imageUrl, error in
+                    if error != nil {
+                        print("get url error")
+                        // Handle any errors
+                    } else {
+                        // Get the download URＬ
+                        let uploadImageUrl = imageUrl?.absoluteString
+                        print("Photo Url: \(uploadImageUrl)")
+                        url = uploadImageUrl
+                    }
+                }
+            })
+        }
+        print("Before returning")
+        dismiss(animated: true, completion: nil)
+        return url
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setBgImg()
         info?.boxImg = ImageInfo()
+        delegateSetting()
+        print("viewDidLoad")
         // Do any additional setup after loading the view.
+    }
+    func delegateSetting(){
+        gameTitle.delegate = self
+        gameIntroduction.delegate = self
+        boxPos.delegate = self
+        winMsg.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    // press "Enter" to close the keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    // press the view to close the keyboard
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     func setBgImg(){
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "editorbackground.png")
