@@ -135,17 +135,76 @@ class GameSelectTableViewController: UITableViewController {
         // getting the box image information
         ref.child(gameID).child("boxImgInfo").observeSingleEvent(of: .value, with: { (snapshot) in
             let imageDictiondary = snapshot.value as? NSDictionary
-            self.presentGameInfo.boxImg = self.setImageInformation(dict: imageDictiondary!, imageName: "treasureBox")
+            self.presentGameInfo.boxImg = ImageInfo()
+            self.saveImage(url: imageDictiondary!["data"] as! String, filename:"treasureBox")
+            self.presentGameInfo.boxImg.isFloor = imageDictiondary!["isFloor"] as! Bool
+            self.addDownloadCount()
         }) { (error) in
             print(error.localizedDescription)
         }
+        /*
         // getting the keys information
-        self.presentGameInfo.goldKeyInfo = self.setKeysInformation(gameID: gameID, keyType: "goldKey")
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        print(presentGameInfo.goldKeyInfo.keyClue)
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        self.presentGameInfo.silverKeyInfo = self.setKeysInformation(gameID: gameID, keyType: "silverKey")
-        self.presentGameInfo.copperKeyInfo = self.setKeysInformation(gameID: gameID, keyType: "copperKey")
+        self.presentGameInfo.goldKeyInfo = KeyInfo()
+        self.presentGameInfo.silverKeyInfo = KeyInfo()
+        self.presentGameInfo.copperKeyInfo = KeyInfo()
+        self.setKeysInformation(gameID: gameID, keyType: "goldKey", destination: self.presentGameInfo.goldKeyInfo)
+        self.setKeysInformation(gameID: gameID, keyType: "silverKey", destination: self.presentGameInfo.silverKeyInfo)
+        self.setKeysInformation(gameID: gameID, keyType: "copperKey", destination: self.presentGameInfo.copperKeyInfo)
+        */
+        
+        // getting the keys infromation
+        ref.child(gameID).child("keys").child("goldKey").observeSingleEvent(of: .value, with: { (snapshot) in
+            let keyDictiondary = snapshot.value as? NSDictionary
+            self.presentGameInfo.goldKeyInfo = KeyInfo()
+            self.presentGameInfo.goldKeyInfo.keyClue = keyDictiondary!["clue"] as! String
+            self.presentGameInfo.goldKeyInfo.keyHint = keyDictiondary!["hint"] as! String
+        self.ref.child(gameID).child("keys").child("goldKey").child("keyImgInfo").observeSingleEvent(of: .value, with: { (snapshot) in
+                let imageDictiondary = snapshot.value as? NSDictionary
+                self.presentGameInfo.goldKeyInfo.keyImg = ImageInfo()
+                self.saveImage(url: imageDictiondary!["data"] as! String, filename:"goldKey")
+                self.presentGameInfo.goldKeyInfo.keyImg.isFloor = imageDictiondary!["isFloor"] as! Bool
+                self.addDownloadCount()
+            }) { (error) in
+                print(error.localizedDescription)
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        ref.child(gameID).child("keys").child("silverKey").observeSingleEvent(of: .value, with: { (snapshot) in
+            let keyDictiondary = snapshot.value as? NSDictionary
+            self.presentGameInfo.silverKeyInfo = KeyInfo()
+            self.presentGameInfo.silverKeyInfo.keyClue = keyDictiondary!["clue"] as! String
+            self.presentGameInfo.silverKeyInfo.keyHint = keyDictiondary!["hint"] as! String
+            self.ref.child(gameID).child("keys").child("silverKey").child("keyImgInfo").observeSingleEvent(of: .value, with: { (snapshot) in
+                let imageDictiondary = snapshot.value as? NSDictionary
+                self.presentGameInfo.silverKeyInfo.keyImg = ImageInfo()
+                self.saveImage(url: imageDictiondary!["data"] as! String, filename:"silverKey")
+                self.presentGameInfo.silverKeyInfo.keyImg.isFloor = imageDictiondary!["isFloor"] as! Bool
+                self.addDownloadCount()
+            }) { (error) in
+                print(error.localizedDescription)
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        ref.child(gameID).child("keys").child("copperKey").observeSingleEvent(of: .value, with: { (snapshot) in
+            let keyDictiondary = snapshot.value as? NSDictionary
+            self.presentGameInfo.copperKeyInfo = KeyInfo()
+            self.presentGameInfo.copperKeyInfo.keyClue = keyDictiondary!["clue"] as! String
+            self.presentGameInfo.copperKeyInfo.keyHint = keyDictiondary!["hint"] as! String
+            self.ref.child(gameID).child("keys").child("copperKey").child("keyImgInfo").observeSingleEvent(of: .value, with: { (snapshot) in
+                let imageDictiondary = snapshot.value as? NSDictionary
+                self.presentGameInfo.copperKeyInfo.keyImg = ImageInfo()
+                self.saveImage(url: imageDictiondary!["data"] as! String, filename:"copperKey")
+                self.presentGameInfo.copperKeyInfo.keyImg.isFloor = imageDictiondary!["isFloor"] as! Bool
+                self.addDownloadCount()
+            }) { (error) in
+                print(error.localizedDescription)
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
         
     }
     func setGameInformation(dict: NSDictionary){
@@ -157,45 +216,52 @@ class GameSelectTableViewController: UITableViewController {
         self.presentGameInfo.winMessage = dict["winMsg"] as! String
         addDownloadCount()
     }
-    func setKeysInformation(gameID:String, keyType: String) -> KeyInfo{
-        var destination = KeyInfo()
+    func setKeysInformationNew(gameID:String, keyType: String){
         ref.child(gameID).child("keys").child(keyType).observeSingleEvent(of: .value, with: { (snapshot) in
             let keyDictiondary = snapshot.value as? NSDictionary
-            destination = self.setSingleKeyInformation(dict: keyDictiondary!, Imgref: self.ref.child(gameID).child("keys").child(keyType).child("keyImgInfo"), keyType: keyType)
+            self.setSingleKeyInformationNew(dict: keyDictiondary!, Imgref: self.ref.child(gameID).child("keys").child(keyType).child("keyImgInfo"), keyType: keyType)
         }) { (error) in
             print(error.localizedDescription)
         }
-        if(keyType == "goldKey"){
-            print("????????????????????????????")
-            print(destination.keyClue)
-            print("????????????????????????????")
-        }
-        return destination
     }
-    func setSingleKeyInformation(dict: NSDictionary, Imgref: DatabaseReference, keyType: String) -> KeyInfo{
+    func setKeysInformation(gameID:String, keyType: String, destination: KeyInfo){
+        
+        ref.child(gameID).child("keys").child(keyType).observeSingleEvent(of: .value, with: { (snapshot) in
+            let keyDictiondary = snapshot.value as? NSDictionary
+            self.setSingleKeyInformation(dict: keyDictiondary!, Imgref: self.ref.child(gameID).child("keys").child(keyType).child("keyImgInfo"), keyType: keyType, destination: destination)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    func setSingleKeyInformation(dict: NSDictionary, Imgref: DatabaseReference, keyType: String, destination: KeyInfo){
         let destination = KeyInfo()
         destination.keyClue = dict["clue"] as! String
         destination.keyHint = dict["hint"] as! String
         Imgref.observeSingleEvent(of: .value, with: { (snapshot) in
             let imageDictiondary = snapshot.value as? NSDictionary
-            destination.keyImg = self.setImageInformation(dict: imageDictiondary!, imageName: keyType)
+            destination.keyImg = ImageInfo()
+            self.setImageInformation(dict: imageDictiondary!, imageName: keyType, destination: destination.keyImg)
         }) { (error) in
             print(error.localizedDescription)
         }
-        if(keyType == "goldKey"){
-            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-            print(destination.keyClue)
-            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-        }
-        return destination
     }
-    func setImageInformation(dict: NSDictionary, imageName: String) -> ImageInfo{
-        let destination = ImageInfo()
+    func setSingleKeyInformationNew(dict: NSDictionary, Imgref: DatabaseReference, keyType: String){
+        let destination = KeyInfo()
+        destination.keyClue = dict["clue"] as! String
+        destination.keyHint = dict["hint"] as! String
+        Imgref.observeSingleEvent(of: .value, with: { (snapshot) in
+            let imageDictiondary = snapshot.value as? NSDictionary
+            destination.keyImg = ImageInfo()
+            self.setImageInformation(dict: imageDictiondary!, imageName: keyType, destination: destination.keyImg)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    func setImageInformation(dict: NSDictionary, imageName: String, destination: ImageInfo){
         //destination.image = dict["data"] as! UIImage
         saveImage(url: dict["data"] as! String, filename:imageName)
         destination.isFloor = dict["isFloor"] as! Bool
         addDownloadCount()
-        return destination
     }
     func saveImage(url: String, filename: String){
         let imageUrl = URL(string: url)
