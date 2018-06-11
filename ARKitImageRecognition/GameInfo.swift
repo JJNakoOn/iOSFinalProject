@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+let TESTING = true
+
 enum keyType: String {
     case gold = "金"
     case silver = "銀"

@@ -11,16 +11,31 @@ import Firebase
 import FirebaseDatabase
 
 class GameSelectTableViewController: UITableViewController {
-
+    
     var gameList: [GameSimpleInfo] = []
+    var presentGame: GameSimpleInfo = GameSimpleInfo()
     override func viewDidLoad() {
         super.viewDidLoad()
+        setBgImg()
         loadDataFromFireBase()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    func setBgImg(){
+        
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "editorbackground.png")
+        backgroundImage.contentMode =  UIViewContentMode.scaleAspectFill
+        backgroundImage.alpha = 0.5
+        //self.view.insertSubview(backgroundImage, at: 0)
+        tableView.backgroundView = backgroundImage
+
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     func loadDataFromFireBase(){
         let ref = Database.database().reference()
@@ -33,8 +48,6 @@ class GameSelectTableViewController: UITableViewController {
                     let dataDictionary = data as! [String: AnyObject]
                     tempGSInfo.title = dataDictionary["name"] as! String
                     tempGSInfo.introduction = dataDictionary["introduction"] as! String
-//                    print(tempGSInfo.title)
-//                    print(tempGSInfo.introduction)
                     self.gameList.append(tempGSInfo)
                     self.tableView.reloadData()
                 }
@@ -51,21 +64,41 @@ class GameSelectTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return gameList.count
+        if section == 0 {
+            return Int(truncating: NSNumber(value:presentGame.title != ""))
+        }else{
+            return gameList.count
+        }
     }
 
-    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if(section == 0){
+            return "已下載地圖"
+        } else {
+            return "可下載地圖列表"
+        }
+    }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GameIntroCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GameIntroCell", for: indexPath) as! GameSelectTableViewCell
+        if(indexPath.section == 0){
+            print("get the first seciton")
+        } else {
         let game = gameList[indexPath.row]
-        cell.textLabel?.text = game.title
-        cell.detailTextLabel?.text = game.introduction
+            cell.gameTitle.text = game.title
+            cell.gameIntro.text = game.introduction
+            cell.gameLogo = {
+                let imageView = UIImageView()
+                imageView.image = UIImage(named: "gameLogo.png")
+                return imageView
+            }()
+        }
         return cell
+        
     }
  
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -73,7 +106,12 @@ class GameSelectTableViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // TODO: prevent from redownloading
-        print("Start downloading game of \(gameList[indexPath.row].title)")
+        if(indexPath.section == 0){
+            return
+        }else{
+            print("Start downloading game of \(gameList[indexPath.row].title)")
+            
+        }
     }
 
 }

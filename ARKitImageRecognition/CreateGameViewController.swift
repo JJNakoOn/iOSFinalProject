@@ -18,7 +18,6 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet var boxPos: UITextField!
     @IBOutlet var winMsg: UITextField!
     var info: GameInfo? = GameInfo()
-    let slideAnimator = SlideAnimator()
     var imgSelected:Bool = false
     @IBOutlet weak var boxImage: UIImageView!
     @IBOutlet var boxImgIsFloor: UISegmentedControl!
@@ -294,7 +293,6 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
     func passUploadData(for segue: UIStoryboardSegue){
         let uploadingVC = segue.destination as! UploadingViewController
         uploadingVC.info = self.info
-        uploadingVC.transitioningDelegate = slideAnimator
     }
 
     @IBAction func saveUnwindSegueFromKeyInfoView(_ segue: UIStoryboardSegue){
@@ -311,7 +309,7 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
         }
     }
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == "uploadSegue" {
+        if (identifier == "uploadSegue") && !TESTING {
             return checkImgInfo(isSelected: self.imgSelected, message: "請選擇寶箱位置照片")
                 && checkKeyInfo(key: self.info?.goldKeyInfo, message: "請填入金鑰匙資訊")
                 && checkKeyInfo(key: self.info?.silverKeyInfo, message: "請填入銀鑰匙資訊")

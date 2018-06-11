@@ -32,8 +32,24 @@ class UploadingViewController: UIViewController {
         self.navigationItem.setHidesBackButton(true, animated:true);
         setBgImg()
         setupLayout()
-        startUploading()
+        if(TESTING){
+            finishButton.isHidden = false
+            finishButton.alpha = 1
+        } else{
+            startUploading()
+        }
         // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Hide the navigation bar on the this view controller
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Show the navigation bar on other view controllers
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     func setupLayout(){
         
@@ -219,6 +235,7 @@ class UploadingViewController: UIViewController {
             msgLabel.text = "上傳完成!"
         }
     }
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "backToMenu"){
             let destination = segue.destination
@@ -229,5 +246,6 @@ class UploadingViewController: UIViewController {
             super.prepare(for: segue, sender: sender)
         }
     }
+     */
 
 }

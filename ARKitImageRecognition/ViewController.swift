@@ -176,13 +176,13 @@ extension ViewController: ARSCNViewDelegate {
             self.label.text = "Image detected: \"\(imageName)\""
         }
     }
-    
+    /*
     func getPlaneNode(withReferenceImage image: ARReferenceImage) -> SCNNode {
         let plane = SCNPlane(width: image.physicalSize.width,
                              height: image.physicalSize.height)
         let node = SCNNode(geometry: plane)
         return node
-    }
+    }*/
     var imageHighlightAction: SCNAction {
         return .sequence([
             .wait(duration: 0.25),

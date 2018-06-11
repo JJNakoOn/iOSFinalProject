@@ -40,6 +40,9 @@
 		D2D31FA220CD53B9007192E4 /* SlideAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D31FA120CD53B9007192E4 /* SlideAnimator.swift */; };
 		D2D31FA420CD5B1E007192E4 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D31FA320CD5B1E007192E4 /* MainMenuViewController.swift */; };
 		D2D31FA620CD80DF007192E4 /* GameSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D31FA520CD80DF007192E4 /* GameSelectTableViewController.swift */; };
+		D2D31FA820CE1521007192E4 /* GameSelectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D31FA720CE1521007192E4 /* GameSelectTableViewCell.swift */; };
+		D2D31FAA20CE1B3A007192E4 /* ScaleSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D31FA920CE1B3A007192E4 /* ScaleSegue.swift */; };
+		D2D31FAE20CE306D007192E4 /* gameLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = D2D31FAD20CE306C007192E4 /* gameLogo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +82,9 @@
 		D2D31FA120CD53B9007192E4 /* SlideAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideAnimator.swift; sourceTree = "<group>"; };
 		D2D31FA320CD5B1E007192E4 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		D2D31FA520CD80DF007192E4 /* GameSelectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSelectTableViewController.swift; sourceTree = "<group>"; };
+		D2D31FA720CE1521007192E4 /* GameSelectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSelectTableViewCell.swift; sourceTree = "<group>"; };
+		D2D31FA920CE1B3A007192E4 /* ScaleSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleSegue.swift; sourceTree = "<group>"; };
+		D2D31FAD20CE306C007192E4 /* gameLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gameLogo.png; sourceTree = "<group>"; };
 		F4698397A90C98EF49BCC78D /* Pods_ARKitImageRecognition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARKitImageRecognition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -170,6 +176,8 @@
 				D2D31FA120CD53B9007192E4 /* SlideAnimator.swift */,
 				D2D31FA320CD5B1E007192E4 /* MainMenuViewController.swift */,
 				D2D31FA520CD80DF007192E4 /* GameSelectTableViewController.swift */,
+				D2D31FA720CE1521007192E4 /* GameSelectTableViewCell.swift */,
+				D2D31FA920CE1B3A007192E4 /* ScaleSegue.swift */,
 			);
 			path = ARKitImageRecognition;
 			sourceTree = "<group>";
@@ -211,6 +219,7 @@
 		D2CC409120CA7B1F0064BD51 /* BackGroundImages */ = {
 			isa = PBXGroup;
 			children = (
+				D2D31FAD20CE306C007192E4 /* gameLogo.png */,
 				D2CC409220CA7B680064BD51 /* editorbackground.png */,
 			);
 			path = BackGroundImages;
@@ -291,6 +300,7 @@
 				D2CC407C20C6E5E50064BD51 /* KeyCopper.tga in Resources */,
 				63217230207CD49400A39F41 /* book.scn in Resources */,
 				D2CC408620C852E40064BD51 /* goldKeyImage.png in Resources */,
+				D2D31FAE20CE306D007192E4 /* gameLogo.png in Resources */,
 				63217231207CD49D00A39F41 /* tree.scn in Resources */,
 				D2C98C4520C574E9002952E0 /* key_silver.dae in Resources */,
 				D2CC407B20C6E5E50064BD51 /* KeySilver.tga in Resources */,
@@ -369,8 +379,10 @@
 				63B119232060F29400A7E3BD /* ViewController.swift in Sources */,
 				63B119212060F29400A7E3BD /* AppDelegate.swift in Sources */,
 				D2D31FA220CD53B9007192E4 /* SlideAnimator.swift in Sources */,
+				D2D31FA820CE1521007192E4 /* GameSelectTableViewCell.swift in Sources */,
 				D2CC408C20C911960064BD51 /* CreateGameViewController.swift in Sources */,
 				D2CC408A20C8D9E30064BD51 /* GameInfo.swift in Sources */,
+				D2D31FAA20CE1B3A007192E4 /* ScaleSegue.swift in Sources */,
 				D2CC408E20C9193A0064BD51 /* KeyInfoViewController.swift in Sources */,
 				D2D31FA620CD80DF007192E4 /* GameSelectTableViewController.swift in Sources */,
 			);
