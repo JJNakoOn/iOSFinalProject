@@ -43,6 +43,10 @@
 		D2D31FA820CE1521007192E4 /* GameSelectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D31FA720CE1521007192E4 /* GameSelectTableViewCell.swift */; };
 		D2D31FAA20CE1B3A007192E4 /* ScaleSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D31FA920CE1B3A007192E4 /* ScaleSegue.swift */; };
 		D2D31FAE20CE306D007192E4 /* gameLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = D2D31FAD20CE306C007192E4 /* gameLogo.png */; };
+		D2D31FB420CE7423007192E4 /* win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D2D31FB020CE7423007192E4 /* win.mp3 */; };
+		D2D31FB520CE7423007192E4 /* getTreasureBox.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D2D31FB120CE7423007192E4 /* getTreasureBox.mp3 */; };
+		D2D31FB620CE7423007192E4 /* getKey.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D2D31FB220CE7423007192E4 /* getKey.mp3 */; };
+		D2D31FB720CE7423007192E4 /* bgm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D2D31FB320CE7423007192E4 /* bgm.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +57,7 @@
 		63217222207CCD0100A39F41 /* tree.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = tree.scn; sourceTree = "<group>"; };
 		6321722F207CD3F100A39F41 /* book.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = book.scn; sourceTree = "<group>"; };
 		63217232207CF66C00A39F41 /* 3D Models Credits.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "3D Models Credits.md"; sourceTree = "<group>"; };
-		63B1191D2060F29400A7E3BD /* ARKitImageRecognition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARKitImageRecognition.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		63B1191D2060F29400A7E3BD /* treAsuRe hunting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "treAsuRe hunting.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63B119202060F29400A7E3BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63B119222060F29400A7E3BD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		63B119252060F29400A7E3BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -85,6 +89,10 @@
 		D2D31FA720CE1521007192E4 /* GameSelectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSelectTableViewCell.swift; sourceTree = "<group>"; };
 		D2D31FA920CE1B3A007192E4 /* ScaleSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleSegue.swift; sourceTree = "<group>"; };
 		D2D31FAD20CE306C007192E4 /* gameLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gameLogo.png; sourceTree = "<group>"; };
+		D2D31FB020CE7423007192E4 /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = win.mp3; sourceTree = "<group>"; };
+		D2D31FB120CE7423007192E4 /* getTreasureBox.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = getTreasureBox.mp3; sourceTree = "<group>"; };
+		D2D31FB220CE7423007192E4 /* getKey.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = getKey.mp3; sourceTree = "<group>"; };
+		D2D31FB320CE7423007192E4 /* bgm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgm.mp3; sourceTree = "<group>"; };
 		F4698397A90C98EF49BCC78D /* Pods_ARKitImageRecognition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARKitImageRecognition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -152,7 +160,7 @@
 		63B1191E2060F29400A7E3BD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				63B1191D2060F29400A7E3BD /* ARKitImageRecognition.app */,
+				63B1191D2060F29400A7E3BD /* treAsuRe hunting.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -160,6 +168,7 @@
 		63B1191F2060F29400A7E3BD /* ARKitImageRecognition */ = {
 			isa = PBXGroup;
 			children = (
+				D2D31FAF20CE73BF007192E4 /* Audio */,
 				D2CC409120CA7B1F0064BD51 /* BackGroundImages */,
 				D2CC408F20C92BC30064BD51 /* GoogleService-Info.plist */,
 				632171E2207C9ED700A39F41 /* 3D Models */,
@@ -225,6 +234,17 @@
 			path = BackGroundImages;
 			sourceTree = "<group>";
 		};
+		D2D31FAF20CE73BF007192E4 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				D2D31FB320CE7423007192E4 /* bgm.mp3 */,
+				D2D31FB220CE7423007192E4 /* getKey.mp3 */,
+				D2D31FB120CE7423007192E4 /* getTreasureBox.mp3 */,
+				D2D31FB020CE7423007192E4 /* win.mp3 */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
 		F72ABF6F22EE82C06CE5F7D6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,7 +273,7 @@
 			);
 			name = ARKitImageRecognition;
 			productName = "Image Recognition";
-			productReference = 63B1191D2060F29400A7E3BD /* ARKitImageRecognition.app */;
+			productReference = 63B1191D2060F29400A7E3BD /* treAsuRe hunting.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -298,7 +318,9 @@
 				63B1192B2060F29400A7E3BD /* LaunchScreen.storyboard in Resources */,
 				D2CC407720C6E4EB0064BD51 /* key_copper.dae in Resources */,
 				D2CC407C20C6E5E50064BD51 /* KeyCopper.tga in Resources */,
+				D2D31FB620CE7423007192E4 /* getKey.mp3 in Resources */,
 				63217230207CD49400A39F41 /* book.scn in Resources */,
+				D2D31FB520CE7423007192E4 /* getTreasureBox.mp3 in Resources */,
 				D2CC408620C852E40064BD51 /* goldKeyImage.png in Resources */,
 				D2D31FAE20CE306D007192E4 /* gameLogo.png in Resources */,
 				63217231207CD49D00A39F41 /* tree.scn in Resources */,
@@ -310,6 +332,7 @@
 				63B119282060F29400A7E3BD /* Assets.xcassets in Resources */,
 				D2C98C4320C54055002952E0 /* key_gold.dae in Resources */,
 				63B119262060F29400A7E3BD /* Main.storyboard in Resources */,
+				D2D31FB420CE7423007192E4 /* win.mp3 in Resources */,
 				D2CC407520C63F530064BD51 /* treasureBox.dae in Resources */,
 				6321720A207CAAA000A39F41 /* book.jpg in Resources */,
 				D2C98C4E20C5A4C2002952E0 /* coin_tex.png in Resources */,
@@ -319,6 +342,7 @@
 				D2CC408720C852E40064BD51 /* silverKeyImage.png in Resources */,
 				63217221207CCCED00A39F41 /* tree.png in Resources */,
 				D2CC409320CA7B6A0064BD51 /* editorbackground.png in Resources */,
+				D2D31FB720CE7423007192E4 /* bgm.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,7 +557,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = imlab.ARKitImageRecognition;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "treAsuRe hunting";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -550,7 +574,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = imlab.ARKitImageRecognition;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "treAsuRe hunting";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

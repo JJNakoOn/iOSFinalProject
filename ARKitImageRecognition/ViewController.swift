@@ -8,11 +8,13 @@
 
 import UIKit
 import ARKit
+import AVFoundation
 
 class ViewController: UIViewController {
     
     @IBOutlet weak var sceneView: ARSCNView!
     @IBOutlet weak var label: UILabel!
+    var player: AVAudioPlayer?
     
     let fadeDuration: TimeInterval = 0.3
     let rotateDuration: TimeInterval = 30
@@ -147,8 +149,6 @@ class ViewController: UIViewController {
     }
     func getSavedImage(named: String) -> UIImage? {
         if let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
-            print("HERE WE GET URL~~~~~~~~~~~")
-        
             return UIImage(contentsOfFile: URL(fileURLWithPath: dir.absoluteString).appendingPathComponent(named).path)
         }
         return nil
@@ -201,6 +201,7 @@ extension ViewController: ARSCNViewDelegate {
         
         DispatchQueue.main.async {
             self.label.text = "Image detected: \"\(imageName)\""
+            self.playSound(imageName: imageName, isWin: false)
         }
     }
     /*
@@ -230,7 +231,7 @@ extension ViewController: ARSCNViewDelegate {
     func getNode(withImageName name: String) -> SCNNode {
         var node = SCNNode()
         switch name {
-        case "treasurBox":
+        case "treasureBox":
             node = treasureBoxNode
         case "goldKey":
             node = goldKeyNode
@@ -308,5 +309,30 @@ extension ViewController: ARSCNViewDelegate {
         } while node.parent != nil
         return false
     }
+    func playSound(imageName: String, isWin: Bool) {
+        var filename:String = ""
+        if isWin{
+            filename = "win"
+        }
+        else{
+            if imageName == "treasureBox"{
+                filename = "getTreasureBox"
+            } else {
+                filename = "getKey"
+            }
+        }
+        guard let url = Bundle.main.url(forResource: filename, withExtension: "mp3") else { return }
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            guard let player = player else { return }
+            player.play()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
     
 }
