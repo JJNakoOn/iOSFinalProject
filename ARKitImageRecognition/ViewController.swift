@@ -133,16 +133,43 @@ class ViewController: UIViewController {
         resetTrackingConfiguration()
     }
     
-    func resetTrackingConfiguration() {
-        guard let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: nil) else { return }
-        let configuration = ARWorldTrackingConfiguration()
-        configuration.detectionImages = referenceImages
-        let options: ARSession.RunOptions = [.resetTracking, .removeExistingAnchors]
-        sceneView.session.run(configuration, options: options)
-        label.text = "Move camera around to detect images"
+    func createARReference(name: String)->ARReferenceImage?{
+        guard let imageFromBundle = getSavedImage(named: name + ".jpg") else{
+            print("NOOOOOOOOOOOOOOOO~~~ IMAGE YO!")
+            return nil
+        }
+        guard let imageToCIImage = CIImage(image:imageFromBundle),
+            let cgImage = convertCIImageToCGImage(inputImage: imageToCIImage)else { return nil  }
+        let arImage = ARReferenceImage(cgImage, orientation: CGImagePropertyOrientation.up, physicalWidth: 0.2)
+        arImage.name = name
+       
+        return arImage
     }
-    
-    
+    func getSavedImage(named: String) -> UIImage? {
+        if let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
+            print("HERE WE GET URL~~~~~~~~~~~")
+        
+            return UIImage(contentsOfFile: URL(fileURLWithPath: dir.absoluteString).appendingPathComponent(named).path)
+        }
+        return nil
+    }
+    func resetTrackingConfiguration() {
+        // var referenceImage: Set<ARReferenceImage>?
+        
+            let configuration = ARWorldTrackingConfiguration()
+        
+            if let arImageBox = self.createARReference(name: "treasureBox"),
+                let arImageGold = self.createARReference(name: "goldKey"),
+                let arImageSilver = self.createARReference(name: "silverKey"),
+                let arImageCopper = self.createARReference(name: "copperKey"){
+                configuration.detectionImages = [arImageBox, arImageGold, arImageSilver, arImageCopper] as Set<ARReferenceImage>
+            }
+        
+            let options: ARSession.RunOptions = [.resetTracking, .removeExistingAnchors]
+            self.sceneView.session.run(configuration, options: options)
+        
+            self.label.text = "Move camera around to detect images"
+        }
     
 }
 
@@ -193,9 +220,25 @@ extension ViewController: ARSCNViewDelegate {
             .removeFromParentNode()
             ])
     }
+    func convertCIImageToCGImage(inputImage: CIImage) -> CGImage? {
+        let context = CIContext(options: nil)
+        if let cgImage = context.createCGImage(inputImage, from: inputImage.extent) {
+            return cgImage
+        }
+        return nil
+    }
     func getNode(withImageName name: String) -> SCNNode {
         var node = SCNNode()
         switch name {
+        case "treasurBox":
+            node = treasureBoxNode
+        case "goldKey":
+            node = goldKeyNode
+        case "silverKey":
+            node = silverKeyNode
+        case "copperKey":
+            node = copperKeyNode
+            /*
         case "Book":
             node = copperKeyNode
         case "Snow Mountain":
@@ -220,6 +263,7 @@ extension ViewController: ARSCNViewDelegate {
             node = treasureBoxNode
         case "bed":
             node = treasureBoxNode
+            */
         default:
             break
         }

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-let TESTING = true
+let TESTING = false
 
 enum keyType: String {
     case gold = "金"
