@@ -47,6 +47,16 @@
 		D2D31FB520CE7423007192E4 /* getTreasureBox.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D2D31FB120CE7423007192E4 /* getTreasureBox.mp3 */; };
 		D2D31FB620CE7423007192E4 /* getKey.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D2D31FB220CE7423007192E4 /* getKey.mp3 */; };
 		D2D31FB720CE7423007192E4 /* bgm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D2D31FB320CE7423007192E4 /* bgm.mp3 */; };
+		D2D31FBB20CEC126007192E4 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = D2D31FB920CEC125007192E4 /* home.png */; };
+		D2D31FBD20CEC54E007192E4 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D31FBC20CEC54E007192E4 /* LoadingViewController.swift */; };
+		D2D31FBF20CEC5BA007192E4 /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = D2D31FBE20CEC5BA007192E4 /* loading.png */; };
+		D2D31FC320CECC0D007192E4 /* cave2.png in Resources */ = {isa = PBXBuildFile; fileRef = D2D31FC220CECC0D007192E4 /* cave2.png */; };
+		D2D31FC720CECD33007192E4 /* ClueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D31FC620CECD32007192E4 /* ClueTableViewController.swift */; };
+		D2D31FC920CED361007192E4 /* ClueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D31FC820CED361007192E4 /* ClueTableViewCell.swift */; };
+		D2D31FD520CED4F3007192E4 /* boxClose.png in Resources */ = {isa = PBXBuildFile; fileRef = D2D31FD020CED4F1007192E4 /* boxClose.png */; };
+		D2D31FD620CED4F3007192E4 /* goldKeyImage.png in Resources */ = {isa = PBXBuildFile; fileRef = D2D31FD120CED4F2007192E4 /* goldKeyImage.png */; };
+		D2D31FD720CED4F3007192E4 /* silverKeyImage.png in Resources */ = {isa = PBXBuildFile; fileRef = D2D31FD220CED4F2007192E4 /* silverKeyImage.png */; };
+		D2D31FD920CED4F3007192E4 /* copperKeyImage.png in Resources */ = {isa = PBXBuildFile; fileRef = D2D31FD420CED4F2007192E4 /* copperKeyImage.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +103,16 @@
 		D2D31FB120CE7423007192E4 /* getTreasureBox.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = getTreasureBox.mp3; sourceTree = "<group>"; };
 		D2D31FB220CE7423007192E4 /* getKey.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = getKey.mp3; sourceTree = "<group>"; };
 		D2D31FB320CE7423007192E4 /* bgm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgm.mp3; sourceTree = "<group>"; };
+		D2D31FB920CEC125007192E4 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		D2D31FBC20CEC54E007192E4 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		D2D31FBE20CEC5BA007192E4 /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
+		D2D31FC220CECC0D007192E4 /* cave2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cave2.png; sourceTree = "<group>"; };
+		D2D31FC620CECD32007192E4 /* ClueTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClueTableViewController.swift; sourceTree = "<group>"; };
+		D2D31FC820CED361007192E4 /* ClueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClueTableViewCell.swift; sourceTree = "<group>"; };
+		D2D31FD020CED4F1007192E4 /* boxClose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boxClose.png; sourceTree = "<group>"; };
+		D2D31FD120CED4F2007192E4 /* goldKeyImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goldKeyImage.png; sourceTree = "<group>"; };
+		D2D31FD220CED4F2007192E4 /* silverKeyImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = silverKeyImage.png; sourceTree = "<group>"; };
+		D2D31FD420CED4F2007192E4 /* copperKeyImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = copperKeyImage.png; sourceTree = "<group>"; };
 		F4698397A90C98EF49BCC78D /* Pods_ARKitImageRecognition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARKitImageRecognition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -168,6 +188,7 @@
 		63B1191F2060F29400A7E3BD /* ARKitImageRecognition */ = {
 			isa = PBXGroup;
 			children = (
+				D2D31FCA20CED43D007192E4 /* ClueIcon */,
 				D2D31FAF20CE73BF007192E4 /* Audio */,
 				D2CC409120CA7B1F0064BD51 /* BackGroundImages */,
 				D2CC408F20C92BC30064BD51 /* GoogleService-Info.plist */,
@@ -187,6 +208,9 @@
 				D2D31FA520CD80DF007192E4 /* GameSelectTableViewController.swift */,
 				D2D31FA720CE1521007192E4 /* GameSelectTableViewCell.swift */,
 				D2D31FA920CE1B3A007192E4 /* ScaleSegue.swift */,
+				D2D31FBC20CEC54E007192E4 /* LoadingViewController.swift */,
+				D2D31FC620CECD32007192E4 /* ClueTableViewController.swift */,
+				D2D31FC820CED361007192E4 /* ClueTableViewCell.swift */,
 			);
 			path = ARKitImageRecognition;
 			sourceTree = "<group>";
@@ -228,6 +252,9 @@
 		D2CC409120CA7B1F0064BD51 /* BackGroundImages */ = {
 			isa = PBXGroup;
 			children = (
+				D2D31FC220CECC0D007192E4 /* cave2.png */,
+				D2D31FBE20CEC5BA007192E4 /* loading.png */,
+				D2D31FB920CEC125007192E4 /* home.png */,
 				D2D31FAD20CE306C007192E4 /* gameLogo.png */,
 				D2CC409220CA7B680064BD51 /* editorbackground.png */,
 			);
@@ -243,6 +270,17 @@
 				D2D31FB020CE7423007192E4 /* win.mp3 */,
 			);
 			path = Audio;
+			sourceTree = "<group>";
+		};
+		D2D31FCA20CED43D007192E4 /* ClueIcon */ = {
+			isa = PBXGroup;
+			children = (
+				D2D31FD020CED4F1007192E4 /* boxClose.png */,
+				D2D31FD420CED4F2007192E4 /* copperKeyImage.png */,
+				D2D31FD120CED4F2007192E4 /* goldKeyImage.png */,
+				D2D31FD220CED4F2007192E4 /* silverKeyImage.png */,
+			);
+			path = ClueIcon;
 			sourceTree = "<group>";
 		};
 		F72ABF6F22EE82C06CE5F7D6 /* Pods */ = {
@@ -315,9 +353,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2D31FBF20CEC5BA007192E4 /* loading.png in Resources */,
 				63B1192B2060F29400A7E3BD /* LaunchScreen.storyboard in Resources */,
 				D2CC407720C6E4EB0064BD51 /* key_copper.dae in Resources */,
 				D2CC407C20C6E5E50064BD51 /* KeyCopper.tga in Resources */,
+				D2D31FD720CED4F3007192E4 /* silverKeyImage.png in Resources */,
 				D2D31FB620CE7423007192E4 /* getKey.mp3 in Resources */,
 				63217230207CD49400A39F41 /* book.scn in Resources */,
 				D2D31FB520CE7423007192E4 /* getTreasureBox.mp3 in Resources */,
@@ -327,6 +367,7 @@
 				D2C98C4520C574E9002952E0 /* key_silver.dae in Resources */,
 				D2CC407B20C6E5E50064BD51 /* KeySilver.tga in Resources */,
 				6321721D207CCAD300A39F41 /* mountain.scn in Resources */,
+				D2D31FC320CECC0D007192E4 /* cave2.png in Resources */,
 				D2CC408120C7879E0064BD51 /* KeyGold.tga in Resources */,
 				D2C98C5420C5A6F5002952E0 /* chest_tex.png in Resources */,
 				63B119282060F29400A7E3BD /* Assets.xcassets in Resources */,
@@ -337,11 +378,15 @@
 				6321720A207CAAA000A39F41 /* book.jpg in Resources */,
 				D2C98C4E20C5A4C2002952E0 /* coin_tex.png in Resources */,
 				D2CC408820C852E40064BD51 /* copperKeyImage.png in Resources */,
+				D2D31FD920CED4F3007192E4 /* copperKeyImage.png in Resources */,
 				63217233207CF6CD00A39F41 /* 3D Models Credits.md in Resources */,
 				D2CC409020C92BC40064BD51 /* GoogleService-Info.plist in Resources */,
 				D2CC408720C852E40064BD51 /* silverKeyImage.png in Resources */,
+				D2D31FBB20CEC126007192E4 /* home.png in Resources */,
 				63217221207CCCED00A39F41 /* tree.png in Resources */,
 				D2CC409320CA7B6A0064BD51 /* editorbackground.png in Resources */,
+				D2D31FD620CED4F3007192E4 /* goldKeyImage.png in Resources */,
+				D2D31FD520CED4F3007192E4 /* boxClose.png in Resources */,
 				D2D31FB720CE7423007192E4 /* bgm.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -408,7 +453,10 @@
 				D2CC408A20C8D9E30064BD51 /* GameInfo.swift in Sources */,
 				D2D31FAA20CE1B3A007192E4 /* ScaleSegue.swift in Sources */,
 				D2CC408E20C9193A0064BD51 /* KeyInfoViewController.swift in Sources */,
+				D2D31FC920CED361007192E4 /* ClueTableViewCell.swift in Sources */,
 				D2D31FA620CD80DF007192E4 /* GameSelectTableViewController.swift in Sources */,
+				D2D31FBD20CEC54E007192E4 /* LoadingViewController.swift in Sources */,
+				D2D31FC720CECD33007192E4 /* ClueTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

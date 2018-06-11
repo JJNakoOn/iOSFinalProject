@@ -82,7 +82,7 @@ class GameSelectTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if(section == 0){
-            return "已下載地圖"
+            return "遊戲中地圖"
         } else {
             return "可下載地圖列表"
         }
@@ -97,11 +97,9 @@ class GameSelectTableViewController: UITableViewController {
         }
         cell.gameTitle.text = game.title
         cell.gameIntro.text = game.introduction
-        cell.gameLogo = {
-            let imageView = UIImageView()
-            imageView.image = UIImage(named: "gameLogo.png")
-            return imageView
-        }()
+        cell.gameLogo.translatesAutoresizingMaskIntoConstraints = false
+        cell.gameLogo.layer.cornerRadius = 15
+        cell.gameLogo.layer.masksToBounds = true
         return cell
         
     }
@@ -122,7 +120,7 @@ class GameSelectTableViewController: UITableViewController {
         }
     }
     func setDownloadAlertVC(){
-        alert = UIAlertController(title: "\nDownloading...\n", message: "\n請稍等\n", preferredStyle: .alert)
+        alert = UIAlertController(title: "Downloading...", message: "\n請稍等\n", preferredStyle: .alert)
         self.present(alert, animated: true, completion: nil)
     }
     func downloadData(gameID: String){
@@ -143,6 +141,9 @@ class GameSelectTableViewController: UITableViewController {
         }
         // getting the keys information
         self.presentGameInfo.goldKeyInfo = self.setKeysInformation(gameID: gameID, keyType: "goldKey")
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print(presentGameInfo.goldKeyInfo.keyClue)
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         self.presentGameInfo.silverKeyInfo = self.setKeysInformation(gameID: gameID, keyType: "silverKey")
         self.presentGameInfo.copperKeyInfo = self.setKeysInformation(gameID: gameID, keyType: "copperKey")
         
@@ -164,6 +165,11 @@ class GameSelectTableViewController: UITableViewController {
         }) { (error) in
             print(error.localizedDescription)
         }
+        if(keyType == "goldKey"){
+            print("????????????????????????????")
+            print(destination.keyClue)
+            print("????????????????????????????")
+        }
         return destination
     }
     func setSingleKeyInformation(dict: NSDictionary, Imgref: DatabaseReference, keyType: String) -> KeyInfo{
@@ -175,6 +181,11 @@ class GameSelectTableViewController: UITableViewController {
             destination.keyImg = self.setImageInformation(dict: imageDictiondary!, imageName: keyType)
         }) { (error) in
             print(error.localizedDescription)
+        }
+        if(keyType == "goldKey"){
+            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+            print(destination.keyClue)
+            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
         }
         return destination
     }
@@ -216,9 +227,42 @@ class GameSelectTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 self.alert.dismiss(animated: true, completion: nil)
                 self.tableView.reloadData()
+                self.startGameHint()
             }
             //print(self.presentGame.title)
             //print(self.presentGameInfo.gameName)
+        }
+    }
+    func startGameHint(){
+        let alert = UIAlertController(title: "下載成功", message: "請點擊右上角按鈕開始遊戲", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if (identifier == "StartGame"){
+            if presentGame.title == ""{
+                let alert = UIAlertController(title: "開啟遊戲失敗", message: "請先下載下方列表遊戲再開始", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    alert.dismiss(animated: true, completion: nil)
+                }))
+                self.present(alert, animated: true, completion: nil)
+                return false
+            }
+            else{
+                return true
+            }
+        }
+        // by default, transition
+        return true
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "StartGame"){
+            let gameVC = segue.destination as! ViewController
+            gameVC.info = self.presentGameInfo
+        } else {
+            super.prepare(for: segue, sender: sender)
         }
     }
 

@@ -10,7 +10,14 @@ import Foundation
 import UIKit
 
 let TESTING = false
+var gameState: Int = _GameState.start.rawValue
 
+enum _GameState: Int{
+    case start = 1 // not find box yet
+    case findBox = 2 // find the box, start to find the 3 keys
+    case findKeys = 4 // find all the keys
+    case finish = 8 // fininsh game!
+}
 enum keyType: String {
     case gold = "金"
     case silver = "銀"

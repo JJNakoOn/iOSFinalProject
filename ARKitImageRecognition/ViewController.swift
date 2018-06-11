@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var sceneView: ARSCNView!
     @IBOutlet weak var label: UILabel!
+    var info: GameInfo = GameInfo()
     var player: AVAudioPlayer?
     
     let fadeDuration: TimeInterval = 0.3
@@ -112,6 +113,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         sceneView.delegate = self
         configureLighting()
+        self.title = info.gameName
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -331,6 +333,14 @@ extension ViewController: ARSCNViewDelegate {
             player.play()
         } catch let error {
             print(error.localizedDescription)
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "ShowClueTable"){
+            let clueTableVC = segue.destination as! ClueTableViewController
+            clueTableVC.info = self.info
+        } else {
+            super.prepare(for: segue, sender: sender)
         }
     }
     
