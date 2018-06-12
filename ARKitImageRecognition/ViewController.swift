@@ -119,6 +119,7 @@ class ViewController: UIViewController {
         sceneView.delegate = self
         configureLighting()
         self.title = info.gameName
+        playBGM()
         if(gameState == _GameState.start.rawValue){
             showBoxInfo()
         }
@@ -184,8 +185,9 @@ class ViewController: UIViewController {
         
             let options: ARSession.RunOptions = [.resetTracking, .removeExistingAnchors]
             self.sceneView.session.run(configuration, options: options)
-        
-            self.label.text = "Move camera around to detect images"
+            DispatchQueue.main.async {
+                self.label.text = "移動相機鏡頭以尋找寶物"
+            }
         }
     
 }
@@ -215,13 +217,20 @@ extension ViewController: ARSCNViewDelegate {
             overlayNode.position.y = 0.1
             overlayNode.position.z = 0.03
             overlayNode.runAction(self.floorFadeAndSpinAction)
+            overlayNode.runAction(self.floorFadeAndSpinAction) {
+                self.resetTrackingConfiguration()
+            }
+            
         } else {
             overlayNode.opacity = 0
             overlayNode.position.y = 0.1
             overlayNode.position.z = 0.03
-            overlayNode.runAction(self.wallFadeAndSpinAction)
+            overlayNode.runAction(self.wallFadeAndSpinAction) {
+                self.resetTrackingConfiguration()
+            }
         }
         if(overlayNode != treasureBoxNode && gameState == _GameState.start.rawValue){
+            resetTrackingConfiguration()
             return
         }
         node.addChildNode(overlayNode)
@@ -379,12 +388,27 @@ extension ViewController: ARSCNViewDelegate {
         }
         guard let url = Bundle.main.url(forResource: filename, withExtension: "mp3") else { return }
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
             try AVAudioSession.sharedInstance().setActive(true)
             
             player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
             guard let player = player else { return }
             player.play()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    func playBGM() {
+        guard let url = Bundle.main.url(forResource: "bgm", withExtension: "mp3") else { return }
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
+            //try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            bgmPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            guard let bgmPlayer = bgmPlayer else { return }
+            bgmPlayer.numberOfLoops = -1
+            bgmPlayer.play()
         } catch let error {
             print(error.localizedDescription)
         }

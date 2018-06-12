@@ -59,6 +59,7 @@
 		D2D31FD920CED4F3007192E4 /* copperKeyImage.png in Resources */ = {isa = PBXBuildFile; fileRef = D2D31FD420CED4F2007192E4 /* copperKeyImage.png */; };
 		D2D31FDB20CEEB60007192E4 /* DetailClueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D31FDA20CEEB60007192E4 /* DetailClueViewController.swift */; };
 		D2D31FDD20CF6F52007192E4 /* key_goldNew.dae in Resources */ = {isa = PBXBuildFile; fileRef = D2D31FDC20CF6F51007192E4 /* key_goldNew.dae */; };
+		D2D31FDF20D03F22007192E4 /* boxOpen.png in Resources */ = {isa = PBXBuildFile; fileRef = D2D31FDE20D03F22007192E4 /* boxOpen.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +118,7 @@
 		D2D31FD420CED4F2007192E4 /* copperKeyImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = copperKeyImage.png; sourceTree = "<group>"; };
 		D2D31FDA20CEEB60007192E4 /* DetailClueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailClueViewController.swift; sourceTree = "<group>"; };
 		D2D31FDC20CF6F51007192E4 /* key_goldNew.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = key_goldNew.dae; sourceTree = "<group>"; };
+		D2D31FDE20D03F22007192E4 /* boxOpen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boxOpen.png; sourceTree = "<group>"; };
 		F4698397A90C98EF49BCC78D /* Pods_ARKitImageRecognition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARKitImageRecognition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -281,6 +283,7 @@
 		D2D31FCA20CED43D007192E4 /* ClueIcon */ = {
 			isa = PBXGroup;
 			children = (
+				D2D31FDE20D03F22007192E4 /* boxOpen.png */,
 				D2D31FD020CED4F1007192E4 /* boxClose.png */,
 				D2D31FD420CED4F2007192E4 /* copperKeyImage.png */,
 				D2D31FD120CED4F2007192E4 /* goldKeyImage.png */,
@@ -333,6 +336,11 @@
 					63B1191C2060F29400A7E3BD = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -394,6 +402,7 @@
 				D2CC409320CA7B6A0064BD51 /* editorbackground.png in Resources */,
 				D2D31FD620CED4F3007192E4 /* goldKeyImage.png in Resources */,
 				D2D31FD520CED4F3007192E4 /* boxClose.png in Resources */,
+				D2D31FDF20D03F22007192E4 /* boxOpen.png in Resources */,
 				D2D31FB720CE7423007192E4 /* bgm.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

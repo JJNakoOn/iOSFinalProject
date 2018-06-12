@@ -24,6 +24,10 @@
 	<string>For Augmented Reality &amp; picking photos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>For picking photos</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

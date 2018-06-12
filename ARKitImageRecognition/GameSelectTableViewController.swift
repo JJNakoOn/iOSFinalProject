@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import AVFoundation
 
 class GameSelectTableViewController: UITableViewController {
     
@@ -39,8 +40,14 @@ class GameSelectTableViewController: UITableViewController {
         tableView.backgroundView = backgroundImage
 
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        guard bgmPlayer != nil else{
+            return
+        }
+        print("I am going to STOP THE MUSIC")
+        bgmPlayer?.stop()
     }
     func loadDataFromFireBase(){
         

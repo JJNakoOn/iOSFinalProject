@@ -8,9 +8,11 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 let TESTING = false
 var gameState: Int = _GameState.start.rawValue
+var bgmPlayer: AVAudioPlayer?
 
 var globalCashingCount:[Int] = [0, 0, 0, 0]
 var findThings:[Bool] = [false, false, false, false]
