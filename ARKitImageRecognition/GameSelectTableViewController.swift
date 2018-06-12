@@ -294,6 +294,7 @@ class GameSelectTableViewController: UITableViewController {
                 self.alert.dismiss(animated: true, completion: nil)
                 self.tableView.reloadData()
                 self.startGameHint()
+                self.gamePreparing()
             }
             //print(self.presentGame.title)
             //print(self.presentGameInfo.gameName)
@@ -305,6 +306,17 @@ class GameSelectTableViewController: UITableViewController {
             alert.dismiss(animated: true, completion: nil)
         }))
         self.present(alert, animated: true, completion: nil)
+    }
+    func gamePreparing(){
+        gameState = _GameState.start.rawValue
+        globalCashingCount[0] = 0
+        globalCashingCount[1] = 0
+        globalCashingCount[2] = 0
+        globalCashingCount[3] = 0
+        findThings[0] = false
+        findThings[1] = false
+        findThings[2] = false
+        findThings[3] = false
     }
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if (identifier == "StartGame"){

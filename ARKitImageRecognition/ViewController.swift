@@ -18,10 +18,11 @@ class ViewController: UIViewController {
     var player: AVAudioPlayer?
     
     let fadeDuration: TimeInterval = 0.3
-    let rotateDuration: TimeInterval = 30
+    let rotateDuration: TimeInterval = 10
     let waitDuration: TimeInterval = 0.5
+    let adjustDuration: TimeInterval = 0.2
     
-    lazy var fadeAndSpinAction: SCNAction = {
+    lazy var floorFadeAndSpinAction: SCNAction = {
         return .sequence([
             .fadeIn(duration: fadeDuration),
             .rotateBy(x: 0, y: CGFloat.pi * 360 / 90, z: 0, duration: rotateDuration),
@@ -32,10 +33,12 @@ class ViewController: UIViewController {
     
     lazy var wallFadeAndSpinAction: SCNAction = {
         return .sequence([
+            .rotateBy(x: -CGFloat.pi / 2, y: 0, z: 0, duration: adjustDuration),
             .fadeIn(duration: fadeDuration),
             .rotateBy(x: 0, y: 0, z: CGFloat.pi * 360 / 90, duration: rotateDuration),
             .wait(duration: waitDuration),
-            .fadeOut(duration: fadeDuration)
+            .fadeOut(duration: fadeDuration),
+            .rotateBy(x: CGFloat.pi / 2, y: 0, z: 0, duration: adjustDuration)
             ])
     }()
     
@@ -79,7 +82,9 @@ class ViewController: UIViewController {
     
     lazy var goldKeyNode: SCNNode = {
         guard let scene = SCNScene(named: "key_gold.dae"),
-            let node = scene.rootNode.childNode(withName: "key_gold", recursively: false) else { return SCNNode() }
+            let node = scene.rootNode.childNode(withName: "key_gold", recursively: false) else {
+                print("WE CANNOT GET THE OBJECT FILE!!")
+                return SCNNode() }
         let scaleFactor = 0.0002
         node.scale = SCNVector3(scaleFactor, scaleFactor, scaleFactor)
         return node
@@ -114,6 +119,16 @@ class ViewController: UIViewController {
         sceneView.delegate = self
         configureLighting()
         self.title = info.gameName
+        if(gameState == _GameState.start.rawValue){
+            showBoxInfo()
+        }
+    }
+    func showBoxInfo(){
+        let alert = UIAlertController(title: "尋找寶箱", message: "位置："+info.boxPos, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -144,7 +159,7 @@ class ViewController: UIViewController {
         }
         guard let imageToCIImage = CIImage(image:imageFromBundle),
             let cgImage = convertCIImageToCGImage(inputImage: imageToCIImage)else { return nil  }
-        let arImage = ARReferenceImage(cgImage, orientation: CGImagePropertyOrientation.up, physicalWidth: 0.2)
+        let arImage = ARReferenceImage(cgImage, orientation: CGImagePropertyOrientation.up, physicalWidth: 0.3)
         arImage.name = name
        
         return arImage
@@ -193,19 +208,27 @@ extension ViewController: ARSCNViewDelegate {
         */
         
         
-        let overlayNode = self.getNode(withImageName: imageName)
-        overlayNode.opacity = 0
-        overlayNode.position.y = 0.1
-        overlayNode.position.z = 0.05
-        overlayNode.runAction(self.fadeAndSpinAction)
-        
+        let (overlayNode, isFloor) = self.getNode(withImageName: imageName)
+
+        if(isFloor){
+            overlayNode.opacity = 0
+            overlayNode.position.y = 0.1
+            overlayNode.position.z = 0.03
+            overlayNode.runAction(self.floorFadeAndSpinAction)
+        } else {
+            overlayNode.opacity = 0
+            overlayNode.position.y = 0.1
+            overlayNode.position.z = 0.03
+            overlayNode.runAction(self.wallFadeAndSpinAction)
+        }
         node.addChildNode(overlayNode)
         
         DispatchQueue.main.async {
-            self.label.text = "Image detected: \"\(imageName)\""
+            self.label.text = "尋獲: \"\(imageName)\", 請點擊"
             self.playSound(imageName: imageName, isWin: false)
         }
     }
+    
     /*
     func getPlaneNode(withReferenceImage image: ARReferenceImage) -> SCNNode {
         let plane = SCNPlane(width: image.physicalSize.width,
@@ -230,22 +253,29 @@ extension ViewController: ARSCNViewDelegate {
         }
         return nil
     }
-    func getNode(withImageName name: String) -> SCNNode {
+    func getNode(withImageName name: String) -> (SCNNode, Bool) {
         var node = SCNNode()
+        var isFloor: Bool = true
         switch name {
         case "treasureBox":
             node = treasureBoxNode
+            isFloor = info.boxImg.isFloor
         case "goldKey":
             node = goldKeyNode
+            isFloor = info.goldKeyInfo.keyImg.isFloor
         case "silverKey":
             node = silverKeyNode
+            isFloor = info.silverKeyInfo.keyImg.isFloor
         case "copperKey":
             node = copperKeyNode
+            isFloor = info.copperKeyInfo.keyImg.isFloor
             /*
         case "Book":
-            node = copperKeyNode
+            node = goldKeyNode
+            isFloor = true
         case "Snow Mountain":
-            node = silverKeyNode
+            node = treasureBoxNode
+            isFloor = false
         case "Trees In the Dark":
             node = goldKeyNode
         case "handsome":
@@ -270,7 +300,7 @@ extension ViewController: ARSCNViewDelegate {
         default:
             break
         }
-        return node
+        return (node, isFloor)
     }
     //Method called when tap
     @objc func handleTap(rec: UITapGestureRecognizer){
@@ -281,12 +311,33 @@ extension ViewController: ARSCNViewDelegate {
             if !hits.isEmpty{
                 let tappedNode = hits.first?.node
                 if checkHitObj(targetName: "treasureBox", myNode: tappedNode!) {
-                    
-                    let rotateNode = treasureBoxNode.childNode(withName: "joint1", recursively: false)
-                    if(rotateNode == nil){
-                        print("no joint1")
+                    if(gameState == _GameState.start.rawValue){
+                        gameState = _GameState.findBox.rawValue
+                        findThings[0] = true
+                        self.showBoxAlert()
                     }
-                    rotateNode?.runAction(self.openBoxAction)
+                    if(gameState == _GameState.findKeys.rawValue){
+                        gameState = _GameState.finish.rawValue
+                        let rotateNode = treasureBoxNode.childNode(withName: "joint1", recursively: false)
+                        if(rotateNode == nil){
+                            print("no joint1")
+                        }
+                        rotateNode?.runAction(self.openBoxAction)
+                        self.playSound(imageName: "treasureBox", isWin: true)
+                        showWinMsg()
+                    }
+                }
+                else if checkHitObj(targetName: "key_gold", myNode: tappedNode!) {
+                    findThings[1] = true
+                    tapOnKey()
+                }
+                else if checkHitObj(targetName: "key_silver", myNode: tappedNode!) {
+                    findThings[2] = true
+                    tapOnKey()
+                }
+                else if checkHitObj(targetName: "key_copper", myNode: tappedNode!) {
+                    findThings[3] = true
+                    tapOnKey()
                 }
                 else{
                     print("wrong node")
@@ -297,7 +348,6 @@ extension ViewController: ARSCNViewDelegate {
             }
         }
     }
-    
     func checkHitObj(targetName: String, myNode: SCNNode) -> Bool{
         var node:SCNNode = myNode
         if(myNode.name == targetName){
@@ -342,6 +392,42 @@ extension ViewController: ARSCNViewDelegate {
         } else {
             super.prepare(for: segue, sender: sender)
         }
+    }
+    func tapOnKey(){
+        let keysCount = Int(truncating: NSNumber(value:findThings[1])) +
+                        Int(truncating: NSNumber(value:findThings[2])) +
+                        Int(truncating: NSNumber(value:findThings[3]))
+        self.showKeyInfoAlert(findKeys: keysCount)
+    }
+    func showBoxAlert(){
+        let alert = UIAlertController(title: "尋獲寶箱！", message: "需要三把鑰匙打開寶箱,請點擊右上方按鈕獲取三把鑰匙的線索", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    func showKeyInfoAlert(findKeys: Int){
+        if(findKeys == 3){
+            gameState = _GameState.findKeys.rawValue
+            let alert = UIAlertController(title: "已尋獲三把鑰匙！", message: "請儘速回寶箱處開啟寶箱", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "已尋獲 "+String(findKeys)+" 把鑰匙！", message: "請儘速尋找剩餘的鑰匙", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    func showWinMsg(){
+        let alert = UIAlertController(title: "恭喜你勝利！", message: self.info.winMessage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     

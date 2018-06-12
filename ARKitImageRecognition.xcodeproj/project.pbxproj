@@ -57,6 +57,8 @@
 		D2D31FD620CED4F3007192E4 /* goldKeyImage.png in Resources */ = {isa = PBXBuildFile; fileRef = D2D31FD120CED4F2007192E4 /* goldKeyImage.png */; };
 		D2D31FD720CED4F3007192E4 /* silverKeyImage.png in Resources */ = {isa = PBXBuildFile; fileRef = D2D31FD220CED4F2007192E4 /* silverKeyImage.png */; };
 		D2D31FD920CED4F3007192E4 /* copperKeyImage.png in Resources */ = {isa = PBXBuildFile; fileRef = D2D31FD420CED4F2007192E4 /* copperKeyImage.png */; };
+		D2D31FDB20CEEB60007192E4 /* DetailClueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D31FDA20CEEB60007192E4 /* DetailClueViewController.swift */; };
+		D2D31FDD20CF6F52007192E4 /* key_goldNew.dae in Resources */ = {isa = PBXBuildFile; fileRef = D2D31FDC20CF6F51007192E4 /* key_goldNew.dae */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +115,8 @@
 		D2D31FD120CED4F2007192E4 /* goldKeyImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goldKeyImage.png; sourceTree = "<group>"; };
 		D2D31FD220CED4F2007192E4 /* silverKeyImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = silverKeyImage.png; sourceTree = "<group>"; };
 		D2D31FD420CED4F2007192E4 /* copperKeyImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = copperKeyImage.png; sourceTree = "<group>"; };
+		D2D31FDA20CEEB60007192E4 /* DetailClueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailClueViewController.swift; sourceTree = "<group>"; };
+		D2D31FDC20CF6F51007192E4 /* key_goldNew.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = key_goldNew.dae; sourceTree = "<group>"; };
 		F4698397A90C98EF49BCC78D /* Pods_ARKitImageRecognition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARKitImageRecognition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -211,6 +215,7 @@
 				D2D31FBC20CEC54E007192E4 /* LoadingViewController.swift */,
 				D2D31FC620CECD32007192E4 /* ClueTableViewController.swift */,
 				D2D31FC820CED361007192E4 /* ClueTableViewCell.swift */,
+				D2D31FDA20CEEB60007192E4 /* DetailClueViewController.swift */,
 			);
 			path = ARKitImageRecognition;
 			sourceTree = "<group>";
@@ -234,6 +239,7 @@
 				D2CC407820C6E5E50064BD51 /* KeySilver.tga */,
 				D2CC407620C6E4EB0064BD51 /* key_copper.dae */,
 				D2C98C4420C574E9002952E0 /* key_silver.dae */,
+				D2D31FDC20CF6F51007192E4 /* key_goldNew.dae */,
 				D2C98C4220C54055002952E0 /* key_gold.dae */,
 			);
 			path = Key;
@@ -372,6 +378,7 @@
 				D2C98C5420C5A6F5002952E0 /* chest_tex.png in Resources */,
 				63B119282060F29400A7E3BD /* Assets.xcassets in Resources */,
 				D2C98C4320C54055002952E0 /* key_gold.dae in Resources */,
+				D2D31FDD20CF6F52007192E4 /* key_goldNew.dae in Resources */,
 				63B119262060F29400A7E3BD /* Main.storyboard in Resources */,
 				D2D31FB420CE7423007192E4 /* win.mp3 in Resources */,
 				D2CC407520C63F530064BD51 /* treasureBox.dae in Resources */,
@@ -445,6 +452,7 @@
 			files = (
 				D2D31FA420CD5B1E007192E4 /* MainMenuViewController.swift in Sources */,
 				D2D31F9E20CD1FB0007192E4 /* UploadingViewController.swift in Sources */,
+				D2D31FDB20CEEB60007192E4 /* DetailClueViewController.swift in Sources */,
 				63B119232060F29400A7E3BD /* ViewController.swift in Sources */,
 				63B119212060F29400A7E3BD /* AppDelegate.swift in Sources */,
 				D2D31FA220CD53B9007192E4 /* SlideAnimator.swift in Sources */,

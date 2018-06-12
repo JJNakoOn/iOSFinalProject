@@ -13,6 +13,7 @@ class ClueTableViewCell: UITableViewCell {
     @IBOutlet var title: UILabel!
     @IBOutlet var detail: UILabel!
     @IBOutlet var icon: UIImageView!
+    @IBOutlet var clueState: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

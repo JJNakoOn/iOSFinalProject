@@ -245,6 +245,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Game Title" id="i7a-4Z-Svc">
+                        <barButtonItem key="backBarButtonItem" title="回遊戲" id="YpJ-mY-oT3"/>
                         <barButtonItem key="rightBarButtonItem" title="線索們" id="Cfe-wu-lDh">
                             <connections>
                                 <segue destination="RML-Am-ytc" kind="show" identifier="ShowClueTable" id="c3s-4c-R94"/>
@@ -295,14 +296,23 @@
                                             <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="尋找中" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzL-ke-YnN">
+                                            <rect key="frame" x="317" y="28" width="58" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Wm7-ac-g9W" firstAttribute="leading" secondItem="Sce-N6-KiP" secondAttribute="trailing" constant="12" id="8A1-lT-2RH"/>
+                                        <constraint firstItem="nzL-ke-YnN" firstAttribute="top" secondItem="djO-66-DJE" secondAttribute="top" constant="28" id="DK6-7H-rSk"/>
                                         <constraint firstAttribute="bottom" secondItem="Sce-N6-KiP" secondAttribute="bottom" constant="9.5" id="J1a-MP-T5g"/>
                                         <constraint firstItem="Wm7-ac-g9W" firstAttribute="top" secondItem="djO-66-DJE" secondAttribute="topMargin" id="LP5-P1-ZIP"/>
+                                        <constraint firstItem="nzL-ke-YnN" firstAttribute="leading" secondItem="Wm7-ac-g9W" secondAttribute="trailing" constant="8" id="WV0-tL-DBl"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Wm7-ac-g9W" secondAttribute="trailing" constant="50" id="g7G-cZ-RYm"/>
                                         <constraint firstItem="Sce-N6-KiP" firstAttribute="leading" secondItem="djO-66-DJE" secondAttribute="leading" constant="15" id="lut-kl-G2p"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="WTW-6L-vNm" secondAttribute="trailing" constant="50" id="mQy-ta-84v"/>
+                                        <constraint firstAttribute="trailing" secondItem="nzL-ke-YnN" secondAttribute="trailing" id="nBi-w4-edf"/>
                                         <constraint firstItem="Sce-N6-KiP" firstAttribute="top" secondItem="djO-66-DJE" secondAttribute="top" constant="10" id="sUL-7T-Lk2"/>
                                         <constraint firstItem="WTW-6L-vNm" firstAttribute="leading" secondItem="Sce-N6-KiP" secondAttribute="trailing" constant="14" id="wbn-UI-2zW"/>
                                         <constraint firstItem="Wm7-ac-g9W" firstAttribute="leading" secondItem="Sce-N6-KiP" secondAttribute="trailing" constant="12" id="wsi-9h-Xtr"/>
@@ -311,9 +321,11 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
+                                    <outlet property="clueState" destination="nzL-ke-YnN" id="D7O-Hf-zcs"/>
                                     <outlet property="detail" destination="WTW-6L-vNm" id="9l6-xx-vzC"/>
                                     <outlet property="icon" destination="Sce-N6-KiP" id="RgO-iz-J9v"/>
                                     <outlet property="title" destination="Wm7-ac-g9W" id="Xuh-sv-CFc"/>
+                                    <segue destination="j2c-U3-PMX" kind="show" identifier="ShowClueDetailSegue" id="qAH-gS-Uw3"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -327,6 +339,119 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F0N-m1-xok" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2501.5999999999999" y="-140.77961019490255"/>
+        </scene>
+        <!--Detail Clue-->
+        <scene sceneID="KWm-f1-7pi">
+            <objects>
+                <viewController title="Detail Clue" id="j2c-U3-PMX" customClass="DetailClueViewController" customModule="treAsuRe_hunting" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RQx-ky-Lcc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="線索內容：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bP-t9-6tb">
+                                <rect key="frame" x="35" y="154" width="300" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="9WZ-J6-M3t"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="課金以揭曉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Z2-zE-FxU">
+                                <rect key="frame" x="136.5" y="398" width="102" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提示內容：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vFX-fx-b43">
+                                <rect key="frame" x="35" y="223" width="300" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="u2j-mV-wCT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最終提示內容：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3il-ZR-sfU">
+                                <rect key="frame" x="35" y="303" width="193" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6WI-7k-CAm">
+                                <rect key="frame" x="67.5" y="343" width="240" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="aZw-n3-cG8"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="text" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ny6-m8-LzN">
+                                <rect key="frame" x="35" y="189" width="337" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="Lq1-nX-Omr"/>
+                                    <constraint firstAttribute="width" constant="330" id="wL2-F8-P16"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="課金以揭曉" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2m-ah-o7b">
+                                <rect key="frame" x="35" y="263" width="330" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="330" id="azG-zk-B53"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1Z2-zE-FxU" firstAttribute="leading" secondItem="ij8-BS-1vc" secondAttribute="leading" constant="136.5" id="8hO-gX-yhc"/>
+                            <constraint firstItem="ij8-BS-1vc" firstAttribute="trailing" secondItem="3il-ZR-sfU" secondAttribute="trailing" constant="147" id="AtD-q7-I6Y"/>
+                            <constraint firstItem="ij8-BS-1vc" firstAttribute="trailing" secondItem="1Z2-zE-FxU" secondAttribute="trailing" constant="136.5" id="Drz-pe-fsK"/>
+                            <constraint firstItem="3il-ZR-sfU" firstAttribute="leading" secondItem="ij8-BS-1vc" secondAttribute="leading" constant="35" id="FmW-9P-zOJ"/>
+                            <constraint firstItem="4bP-t9-6tb" firstAttribute="top" secondItem="ij8-BS-1vc" secondAttribute="top" constant="90" id="JoS-Cd-MRO"/>
+                            <constraint firstItem="ny6-m8-LzN" firstAttribute="leading" secondItem="ij8-BS-1vc" secondAttribute="leading" constant="35" id="Nz7-lh-ksJ"/>
+                            <constraint firstItem="1Z2-zE-FxU" firstAttribute="top" secondItem="3il-ZR-sfU" secondAttribute="bottom" constant="65" id="Ola-Bz-qeX"/>
+                            <constraint firstItem="O2m-ah-o7b" firstAttribute="leading" secondItem="ij8-BS-1vc" secondAttribute="leading" constant="35" id="TvA-3A-MoY"/>
+                            <constraint firstItem="3il-ZR-sfU" firstAttribute="top" secondItem="O2m-ah-o7b" secondAttribute="bottom" constant="16" id="V9z-mH-HxE"/>
+                            <constraint firstItem="ny6-m8-LzN" firstAttribute="top" secondItem="4bP-t9-6tb" secondAttribute="bottom" constant="5" id="W3w-I3-TV0"/>
+                            <constraint firstItem="6WI-7k-CAm" firstAttribute="top" secondItem="3il-ZR-sfU" secondAttribute="bottom" constant="10" id="WJb-Pf-b6g"/>
+                            <constraint firstItem="6WI-7k-CAm" firstAttribute="leading" secondItem="ij8-BS-1vc" secondAttribute="leading" constant="67.5" id="cQ2-wa-D9i"/>
+                            <constraint firstItem="vFX-fx-b43" firstAttribute="leading" secondItem="ij8-BS-1vc" secondAttribute="leading" constant="35" id="cag-wX-CA1"/>
+                            <constraint firstItem="6WI-7k-CAm" firstAttribute="top" secondItem="3il-ZR-sfU" secondAttribute="bottom" constant="10" id="dqS-Ph-4uj"/>
+                            <constraint firstItem="O2m-ah-o7b" firstAttribute="top" secondItem="vFX-fx-b43" secondAttribute="bottom" constant="10" id="hmB-z1-D2Q"/>
+                            <constraint firstItem="ij8-BS-1vc" firstAttribute="trailing" secondItem="ny6-m8-LzN" secondAttribute="trailing" constant="3" id="j5z-dc-drm"/>
+                            <constraint firstItem="4bP-t9-6tb" firstAttribute="leading" secondItem="ij8-BS-1vc" secondAttribute="leading" constant="35" id="jBb-9t-7Vb"/>
+                            <constraint firstItem="ij8-BS-1vc" firstAttribute="trailing" secondItem="6WI-7k-CAm" secondAttribute="trailing" constant="67.5" id="qgR-II-jLI"/>
+                            <constraint firstItem="vFX-fx-b43" firstAttribute="top" secondItem="ny6-m8-LzN" secondAttribute="bottom" constant="14" id="t1l-1A-ZDf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ij8-BS-1vc"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="dzA-hS-Qvl">
+                        <barButtonItem key="leftBarButtonItem" title="回列表" id="yXE-b4-cfj">
+                            <connections>
+                                <segue destination="wo7-yo-fqv" kind="unwind" unwindAction="saveUnwindSegueFromKeyInfoView:" id="Wj6-54-ppE"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="課金" id="gEY-vD-5IH">
+                            <connections>
+                                <action selector="cash:" destination="j2c-U3-PMX" id="Oa2-A9-jvM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="clue" destination="ny6-m8-LzN" id="eNo-sD-P1w"/>
+                        <outlet property="finalHintImg" destination="6WI-7k-CAm" id="ZLC-WL-1fN"/>
+                        <outlet property="hideWhenImaging" destination="1Z2-zE-FxU" id="o8f-Sd-etk"/>
+                        <outlet property="hint" destination="O2m-ah-o7b" id="MpQ-Uh-4k7"/>
+                        <outlet property="hintTitle" destination="vFX-fx-b43" id="zFD-d2-5KN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bLH-Z1-nNE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="wo7-yo-fqv" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3216.8000000000002" y="-140.77961019490255"/>
         </scene>
         <!--Upload Game-->
         <scene sceneID="tb7-4d-l9L">
@@ -565,10 +690,10 @@
             </objects>
             <point key="canvasLocation" x="1028" y="572"/>
         </scene>
-        <!--Gold Key Setting-->
+        <!--Key Setting-->
         <scene sceneID="eDs-IR-bJO">
             <objects>
-                <viewController title="Gold Key Setting" id="20X-0D-ikS" customClass="KeyInfoViewController" customModule="treAsuRe_hunting" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Key Setting" id="20X-0D-ikS" customClass="KeyInfoViewController" customModule="treAsuRe_hunting" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DpW-kC-FaV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

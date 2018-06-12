@@ -12,6 +12,8 @@ import UIKit
 let TESTING = false
 var gameState: Int = _GameState.start.rawValue
 
+var globalCashingCount:[Int] = [0, 0, 0, 0]
+var findThings:[Bool] = [false, false, false, false]
 enum _GameState: Int{
     case start = 1 // not find box yet
     case findBox = 2 // find the box, start to find the 3 keys
