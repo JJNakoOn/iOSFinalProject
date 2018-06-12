@@ -221,10 +221,11 @@ extension ViewController: ARSCNViewDelegate {
             overlayNode.position.z = 0.03
             overlayNode.runAction(self.wallFadeAndSpinAction)
         }
-        node.addChildNode(overlayNode)
         if(overlayNode != treasureBoxNode && gameState == _GameState.start.rawValue){
             return
         }
+        node.addChildNode(overlayNode)
+        
         
         DispatchQueue.main.async {
             self.label.text = "尋獲: \"\(imageName)\", 請點擊"
