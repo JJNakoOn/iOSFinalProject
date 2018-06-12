@@ -15,6 +15,7 @@ class DetailClueViewController: UIViewController {
     @IBOutlet var hintTitle: UILabel!
     @IBOutlet var hint: UILabel!
     @IBOutlet var finalHintImg: UIImageView!
+    @IBOutlet var finalHintImgVertical: UIImageView!
     @IBOutlet var hideWhenImaging: UILabel!
     @IBAction func cash(_ sender: UIBarButtonItem) {
         if(keyInfo.keyHint.isEmpty){ // box view
@@ -78,18 +79,27 @@ class DetailClueViewController: UIViewController {
     
     func showImage(){
         hideWhenImaging.isHidden = true
+        var tempImg: UIImage = UIImage()
+        let emptyImg: UIImage = UIImage()
         switch self.title {
             case "寶箱資訊":
-                finalHintImg.image = getSavedImage(named:"treasureBox.jpg")
+                tempImg = getSavedImage(named:"treasureBox.jpg")!
             case "金鑰匙資訊":
-                finalHintImg.image = getSavedImage(named:"goldKey.jpg")
+                tempImg = getSavedImage(named:"goldKey.jpg")!
             case "銀鑰匙資訊":
-                finalHintImg.image = getSavedImage(named:"silverKey.jpg")
+                tempImg = getSavedImage(named:"silverKey.jpg")!
             case "銅鑰匙資訊":
-                finalHintImg.image = getSavedImage(named:"copperKey.jpg")
+                tempImg = getSavedImage(named:"copperKey.jpg")!
             default:
                 print("ERROR when showing IMAGE")
                 return
+        }
+        if(tempImg.size.width > tempImg.size.height){
+            finalHintImg.image = tempImg
+            finalHintImgVertical.image = emptyImg
+        } else {
+            finalHintImg.image = emptyImg
+            finalHintImgVertical.image = tempImg
         }
     }
     

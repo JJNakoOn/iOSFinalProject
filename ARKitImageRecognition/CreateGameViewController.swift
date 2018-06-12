@@ -20,6 +20,7 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
     var info: GameInfo? = GameInfo()
     var imgSelected:Bool = false
     @IBOutlet weak var boxImage: UIImageView!
+    @IBOutlet weak var boxImageVertical: UIImageView!
     @IBOutlet var boxImgIsFloor: UISegmentedControl!
     @IBAction func pickBoxPhoto(_ sender: UIButton) {
         // 建立一個 UIImagePickerController 的實體
@@ -243,11 +244,21 @@ class CreateGameViewController: UIViewController, UIImagePickerControllerDelegat
         if let selectedImage = selectedImageFromPicker {
             self.info?.boxImg?.image = selectedImageFromPicker!
             DispatchQueue.main.async {
-                self.boxImage.image = selectedImage
+                self.setImage(img: selectedImage)
                 self.imgSelected = true
             }
         }
         dismiss(animated: true, completion: nil)
+    }
+    func setImage(img: UIImage){
+        let emptyImg = UIImage()
+        if(img.size.width > img.size.height){
+            boxImage.image = img
+            boxImageVertical.image = emptyImg
+        } else {
+            boxImage.image = emptyImg
+            boxImageVertical.image = img
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -16,6 +16,7 @@ class KeyInfoViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     @IBOutlet var isFloorChoose: UISegmentedControl!
     @IBOutlet weak var keyImage: UIImageView!
+    @IBOutlet weak var keyImageVertical: UIImageView!
     @IBOutlet var pickingPhotoButton: UIButton!
     @IBOutlet var clue: UITextField!
     @IBOutlet var hint: UITextField!
@@ -49,7 +50,7 @@ class KeyInfoViewController: UIViewController, UIImagePickerControllerDelegate, 
         imgSelected = true
         clue.text = KInfo?.keyClue
         hint.text = KInfo?.keyHint
-        self.keyImage.image = KInfo?.keyImg.image
+        self.setImage(img: (KInfo?.keyImg.image)!)
         if (KInfo?.keyImg.isFloor)!{
             isFloorChoose.selectedSegmentIndex = 0
         } else {
@@ -96,14 +97,12 @@ class KeyInfoViewController: UIViewController, UIImagePickerControllerDelegate, 
         // 新增 UIAlertAction 在 UIAlertController actionSheet 的 動作 (action) 與標題
         let imageFromLibAction = UIAlertAction(title: "照片圖庫", style: .default) { (Void) in
             
-            
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
                 imagePickerController.sourceType = .photoLibrary
                 self.present(imagePickerController, animated: true, completion: nil)
             }
         }
         let imageFromCameraAction = UIAlertAction(title: "相機", style: .default) { (Void) in
-            
             
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 imagePickerController.sourceType = .camera
@@ -136,12 +135,10 @@ class KeyInfoViewController: UIViewController, UIImagePickerControllerDelegate, 
             selectedImageFromPicker = pickedImage
         }
         
-        let uniqueString = NSUUID().uuidString
-        
         if let selectedImage = selectedImageFromPicker {
             self.KInfo?.keyImg.image = selectedImageFromPicker
             DispatchQueue.main.async {
-                self.keyImage.image = selectedImage
+                self.setImage(img: selectedImage)
                 self.imgSelected = true
             }
         }
@@ -178,6 +175,16 @@ class KeyInfoViewController: UIViewController, UIImagePickerControllerDelegate, 
             }))
             self.present(alert, animated: true, completion: nil)
             return false
+        }
+    }
+    func setImage(img: UIImage){
+        let emptyImg = UIImage()
+        if(img.size.width > img.size.height){
+            keyImage.image = img
+            keyImageVertical.image = emptyImg
+        } else {
+            keyImage.image = emptyImg
+            keyImageVertical.image = img
         }
     }
 
