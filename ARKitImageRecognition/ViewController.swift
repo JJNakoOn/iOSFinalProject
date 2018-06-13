@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     let rotateDuration: TimeInterval = 10
     let waitDuration: TimeInterval = 0.5
     let adjustDuration: TimeInterval = 0.2
+    let moveDuration: TimeInterval = 2
     
     lazy var floorFadeAndSpinAction: SCNAction = {
         return .sequence([
@@ -35,6 +36,7 @@ class ViewController: UIViewController {
         return .sequence([
             .rotateBy(x: -CGFloat.pi / 2, y: 0, z: 0, duration: adjustDuration),
             .fadeIn(duration: fadeDuration),
+            //.moveBy(x:0, y:-1, z:0, duration: moveDuration),
             .rotateBy(x: 0, y: 0, z: CGFloat.pi * 360 / 90, duration: rotateDuration),
             .wait(duration: waitDuration),
             .fadeOut(duration: fadeDuration),
@@ -174,6 +176,7 @@ class ViewController: UIViewController {
     func resetTrackingConfiguration() {
         // var referenceImage: Set<ARReferenceImage>?
         
+            print("COME IN RESETING")
             let configuration = ARWorldTrackingConfiguration()
         
             if let arImageBox = self.createARReference(name: "treasureBox"),
@@ -216,21 +219,23 @@ extension ViewController: ARSCNViewDelegate {
             overlayNode.opacity = 0
             overlayNode.position.y = 0.1
             overlayNode.position.z = 0.03
-            overlayNode.runAction(self.floorFadeAndSpinAction)
-            overlayNode.runAction(self.floorFadeAndSpinAction) {
+            overlayNode.runAction(self.floorFadeAndSpinAction){
                 self.resetTrackingConfiguration()
             }
+            //overlayNode.runAction(self.floorFadeAndSpinAction)
             
         } else {
             overlayNode.opacity = 0
-            overlayNode.position.y = 0.1
-            overlayNode.position.z = 0.03
-            overlayNode.runAction(self.wallFadeAndSpinAction) {
+            overlayNode.position.y = -0.1
+            overlayNode.position.z = 0.05
+            overlayNode.runAction(self.wallFadeAndSpinAction){
                 self.resetTrackingConfiguration()
             }
         }
-        if(overlayNode != treasureBoxNode && gameState == _GameState.start.rawValue){
-            resetTrackingConfiguration()
+        if(imageName != "treasureBox" && gameState == _GameState.start.rawValue){
+            //print(imageName)
+            //print("BEFORE RESETTING...")
+            //resetTrackingConfiguration()
             return
         }
         node.addChildNode(overlayNode)
