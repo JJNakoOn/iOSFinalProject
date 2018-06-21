@@ -12,7 +12,8 @@ In this game, we mainly apply three main techniques to this project. First, we u
 <img src="https://github.com/JJJJHao/iOSFinalProject/blob/master/主畫面.png" width="270" height="480" /> <img src="https://github.com/JJJJHao/iOSFinalProject/blob/master/editor%20mode.png" width="270" height="480" /> 
 
 ## Demo video link (YouTube) 
-https://www.youtube.com/watch?v=0N_xeq2hFbUf 
+https://www.youtube.com/watch?v=0N_xeq2hFbUf<br>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0N_xeq2hFbU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 ## Poster link (pdf)
 https://drive.google.com/open?id=1WBOYwZF3iHD5czWyqFeg9FAtGe6gWdLb 
 
